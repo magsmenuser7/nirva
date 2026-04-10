@@ -8,11 +8,11 @@ import necklacesImage from '@/assets/category-necklaces.jpg';
 import ringsImage from '@/assets/category-rings.jpg';
 import braceletsImage from '@/assets/category-bracelets.jpg';
 import earringsImage from '@/assets/category-earrings.jpg';
-import banner1 from "@/assets/banners/_RAJ3855.jpeg";
-import banner2 from "@/assets/banners/_RAJ3864.jpeg";
-import banner3 from "@/assets/banners/_RAJ3967.jpeg";
+import banner1 from "/assets/banners/_RAJ3855.jpeg";
+import banner2 from "@/assets/banners/banner2.jpeg";
+import banner3 from "@/assets/banners/banner3.jpeg";
 import banner4 from "@/assets/banners/9b58e3d1-a967-4045-a679-565e8e651cdf.jpg";
-import banner5 from "@/assets/banners/_RAJ4293.jpeg";
+import banner5 from "@/assets/banners/banner5.jpeg";
 import banner6 from "@/assets/banners/f0517307-bed7-4d93-bdb0-3b9d04053439.jpg";
 
 const products = [

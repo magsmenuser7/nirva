@@ -4,8 +4,8 @@ import { ArrowRight } from "lucide-react";
 import gridLeft from "@/assets/grid-image-left.jpg";
 import gridRightTop from "@/assets/grid-image-right-top.jpg";
 import gridRightBottom from "@/assets/grid-image-right-bottom.jpg";
-import leftimage from "@/assets/banners/SM-_-TIMELINE-2_04.jpg"
-import rightTopImage from "@/assets/banners/_RAJ3864.jpeg"
+import leftimage from "@/assets/banners/green-necklace.jpg"
+import rightTopImage from "@/assets/banners/banner2.jpeg"
 import rightBottomImage from "@/assets/products/necklace/necklace1-1.jpeg"
 
 export const ImageGridSection = () => {
