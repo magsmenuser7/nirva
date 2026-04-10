@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import model from "@/assets/banners/_RAJ4449.jpeg"
+import model from "@/assets/banners/horozontal-banner.jpeg"
 
 export default function Banner2() {
   return (
