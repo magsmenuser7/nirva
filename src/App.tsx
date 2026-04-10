@@ -19,6 +19,7 @@ import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./pages/ScrollToTop";
 
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const AdminOverview = lazy(() => import("./pages/admin/AdminOverview"));
@@ -39,6 +40,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
+            <ScrollToTop />
               <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
                 <Routes>
                   <Route path="/" element={<Index />} />
