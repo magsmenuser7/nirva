@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* NIRVA Premium Jewelry Theme - Deep Blue & Gold */
+    --background: 40 33% 98%;
+    --foreground: 201 66% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 201 66% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 201 66% 15%;
+
+    /* Primary: Deep Royal Blue */
+    --primary: 201 66% 28%;
+    --primary-foreground: 40 33% 98%;
+
+    /* Secondary: Lighter Blue */
+    --secondary: 201 40% 94%;
+    --secondary-foreground: 201 66% 20%;
+
+    /* Muted: Soft cream/gray */
+    --muted: 40 20% 94%;
+    --muted-foreground: 201 20% 40%;
+
+    /* Accent: Champagne Gold */
+    --accent: 42 61% 58%;
+    --accent-foreground: 201 66% 15%;
+
+    /* Gold variants */
+    --gold: 42 61% 58%;
+    --gold-light: 42 50% 75%;
+    --gold-dark: 42 65% 45%;
+    --gold-nav: 42 72% 50%;
+
+    /* Deep Blue variants */
+    --navy: 201 66% 28%;
+    --navy-light: 201 50% 40%;
+    --navy-dark: 201 70% 18%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 201 20% 88%;
+    --input: 201 20% 88%;
+    --ring: 42 61% 58%;
+
+    --radius: 0.5rem;
+
+    /* Premium gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(42 61% 58%), hsl(42 50% 70%), hsl(42 65% 50%));
+    --gradient-navy: linear-gradient(135deg, hsl(201 66% 28%), hsl(201 70% 18%));
+    --gradient-hero: linear-gradient(180deg, hsl(201 66% 28%) 0%, hsl(201 70% 22%) 100%);
+
+    /* Premium shadows */
+    --shadow-gold: 0 4px 30px -5px hsla(42, 61%, 50%, 0.3);
+    --shadow-elegant: 0 20px 60px -15px hsla(201, 66%, 28%, 0.15);
+    --shadow-card: 0 4px 20px -2px hsla(201, 66%, 28%, 0.08);
+    --shadow-hover: 0 10px 40px -10px hsla(201, 66%, 28%, 0.2);
+
+    /* Sidebar (kept for compatibility) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 201 66% 28%;
+    --sidebar-primary: 201 66% 28%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 42 61% 58%;
+    --sidebar-accent-foreground: 201 66% 15%;
+    --sidebar-border: 201 20% 90%;
+    --sidebar-ring: 42 61% 58%;
+  }
+
+  .dark {
+    --background: 201 70% 8%;
+    --foreground: 40 33% 96%;
+
+    --card: 201 65% 12%;
+    --card-foreground: 40 33% 96%;
+
+    --popover: 201 65% 12%;
+    --popover-foreground: 40 33% 96%;
+
+    --primary: 42 61% 58%;
+    --primary-foreground: 201 66% 15%;
+
+    --secondary: 201 50% 18%;
+    --secondary-foreground: 40 33% 96%;
+
+    --muted: 201 50% 15%;
+    --muted-foreground: 40 20% 70%;
+
+    --accent: 42 61% 58%;
+    --accent-foreground: 201 66% 15%;
+
+    --gold: 42 61% 58%;
+    --gold-light: 42 50% 70%;
+    --gold-dark: 42 65% 50%;
+
+    --navy: 201 66% 28%;
+    --navy-light: 201 50% 40%;
+    --navy-dark: 201 70% 18%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 201 50% 20%;
+    --input: 201 50% 20%;
+    --ring: 42 61% 58%;
+
+    --sidebar-background: 201 70% 10%;
+    --sidebar-foreground: 40 33% 96%;
+    --sidebar-primary: 42 61% 58%;
+    --sidebar-primary-foreground: 201 66% 15%;
+    --sidebar-accent: 201 50% 18%;
+    --sidebar-accent-foreground: 40 33% 96%;
+    --sidebar-border: 201 50% 18%;
+    --sidebar-ring: 42 61% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-sans {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(42 61% 58%), hsl(42 50% 70%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .bg-gradient-navy {
+    background: var(--gradient-navy);
+  }
+
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Premium animations */
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  /* Gold border with glow */
+  .border-gold-glow {
+    border-color: hsl(var(--gold));
+    box-shadow: 0 0 20px -5px hsla(42, 61%, 58%, 0.4);
+  }
+
+  /* Luxury hover effect */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--navy-light));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--navy));
+}
+
+/* Selection color */
+::selection {
+  background: hsl(var(--gold) / 0.3);
+  color: hsl(var(--navy-dark));
+}
