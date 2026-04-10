@@ -10,6 +10,18 @@ import { Heart, ShoppingCart, Eye } from 'lucide-react';
  import necklacesImage from '@/assets/category-necklaces.jpg';
  import braceletsImage from '@/assets/category-bracelets.jpg';
  import earringsImage from '@/assets/category-earrings.jpg';
+import bangles from "@/assets/products/bangles/Bangle1-2.jpeg"
+import bracelet from "@/assets/products/bracelets/bracelet1-1.jpeg"
+import chain from "@/assets/products/chains/chain2-1.jpeg"
+import earrings from "@/assets/products/earrings/earrings2-2.jpeg"
+import necklace1 from "@/assets/products/necklace/necklace2-1.jpeg"
+import earrings2 from "@/assets/products/earrings/earrings3-1.jpeg"
+import chain2 from "@/assets/products/chains/chains3-1.jpeg"
+import bridalset from "@/assets/products/necklace/necklace4-1.jpeg"
+import earrings3 from "@/assets/products/earrings/earrings1-1.jpeg"
+import chain3 from "@/assets/products/chains/chain1-1.jpeg"
+import necklace2 from "@/assets/products/necklace/necklace5-1.jpeg"
+import pendant from "@/assets/products/pendants/statues3-1.jpeg"
  
  // Collections data
  const collections = [
@@ -17,28 +29,28 @@ import { Heart, ShoppingCart, Eye } from 'lucide-react';
      id: 'bridal',
      name: 'Bridal Collection',
      description: 'Timeless pieces for your special day',
-     image: necklacesImage,
+     image: bangles,
      productCount: 24,
    },
    {
      id: 'festive',
      name: 'Festive Collection',
      description: 'Celebrate in style with our festive range',
-     image: earringsImage,
+     image: earrings,
      productCount: 32,
    },
    {
      id: 'everyday',
      name: 'Everyday Elegance',
      description: 'Subtle luxury for daily wear',
-     image: ringsImage,
+     image: chain,
      productCount: 45,
    },
    {
      id: 'heritage',
      name: 'Heritage Collection',
      description: 'Traditional designs with modern craftsmanship',
-     image: braceletsImage,
+     image: bracelet,
      productCount: 18,
    },
  ];
@@ -49,7 +61,7 @@ import { Heart, ShoppingCart, Eye } from 'lucide-react';
     id: 'c1',
      name: 'Bridal Kundan Necklace',
      price: 89999,
-     image: necklacesImage,
+     image: necklace1,
      category: 'Bridal Collection',
      badge: 'Bridal Special',
    },
@@ -57,22 +69,22 @@ import { Heart, ShoppingCart, Eye } from 'lucide-react';
     id: 'c2',
      name: 'Festive Jhumka Earrings',
      price: 15999,
-     image: earringsImage,
+     image: earrings2,
      category: 'Festive Collection',
      badge: 'Trending',
    },
    {
     id: 'c3',
-     name: 'Daily Wear Gold Ring',
+     name: 'Daily Wear Gold Chain',
      price: 12999,
-     image: ringsImage,
+     image: chain2,
      category: 'Everyday Elegance',
    },
    {
     id: 'c4',
      name: 'Temple Heritage Bangle',
      price: 42999,
-     image: braceletsImage,
+     image: bracelet,
      category: 'Heritage Collection',
      badge: 'Limited Edition',
    },
@@ -80,7 +92,7 @@ import { Heart, ShoppingCart, Eye } from 'lucide-react';
     id: 'c5',
     name: 'Bridal Gold Set',
     price: 125999,
-    image: necklacesImage,
+    image: bridalset,
     category: 'Bridal Collection',
     badge: 'Exclusive',
   },
@@ -88,31 +100,33 @@ import { Heart, ShoppingCart, Eye } from 'lucide-react';
     id: 'c6',
     name: 'Festive Chandbali',
     price: 28999,
-    image: earringsImage,
+    image: earrings3,
     category: 'Festive Collection',
   },
   {
     id: 'c7',
     name: 'Minimalist Chain',
     price: 8999,
-    image: necklacesImage,
+    image: chain3,
     category: 'Everyday Elegance',
   },
   {
     id: 'c8',
     name: 'Antique Temple Necklace',
     price: 78999,
-    image: necklacesImage,
+    image: necklace2,
     category: 'Heritage Collection',
     badge: 'Antique',
   },
+  
   {
     id: 'c9',
-    name: 'Bridal Maang Tikka',
-    price: 35999,
-    image: earringsImage,
-    category: 'Bridal Collection',
-  },
+    name: 'Antique Pendant',
+    price: 25999,
+    image: pendant,
+    category: 'Heritage Collection',
+    badge: 'Antique',
+  }
  ];
  
  const formatPrice = (price: number) => {

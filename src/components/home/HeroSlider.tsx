@@ -9,7 +9,7 @@ import ringsImage from '@/assets/category-rings.jpg';
 import braceletsImage from '@/assets/category-bracelets.jpg';
 import earringsImage from '@/assets/category-earrings.jpg';
 import banner1 from "/assets/banners/_RAJ3855.jpeg";
-import banner2 from "@/assets/banners/banner2.jpeg";
+import banner2 from "@/assets/banners/redesigned.jpg";
 import banner3 from "@/assets/banners/banner3.jpeg";
 import banner4 from "@/assets/banners/9b58e3d1-a967-4045-a679-565e8e651cdf.jpg";
 import banner5 from "@/assets/banners/banner5.jpeg";
