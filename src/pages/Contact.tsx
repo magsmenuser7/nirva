@@ -15,12 +15,12 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'Call Us',
-    details: ['+91 98765 43210', '+91 22 2345 6789'],
+    details: ['+91 8096333389'],
   },
   {
     icon: Mail,
     title: 'Email Us',
-    details: ['hello@nirva.com', 'support@nirva.com'],
+    details: ['nirva9k@gmail.com'],
   },
   {
     icon: Clock,

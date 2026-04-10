@@ -40,7 +40,7 @@ export default function Banner2() {
 
     {/* Button */}
     <div className="mt-8">
-      <button className="bg-white text-black px-8 py-3 text-sm tracking-widest rounded-md hover:bg-gray-200 transition duration-300">
+      <button className="bg-white text-black px-8 py-3 text-sm tracking-widest rounded-md hover:bg-gray-200 transition duration-300" onClick={() => window.location.href = '/shop'}>
         SHOP NOW
       </button>
     </div>

@@ -140,7 +140,7 @@ const Shop = () => {
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           {/* Filters Bar */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-border">
+          {/* <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-border">
             <div className="flex flex-wrap gap-2">
               {categories.map((cat) => (
                 <button
@@ -188,11 +188,11 @@ const Shop = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <p className="text-muted-foreground text-sm mb-6">
+          {/* <p className="text-muted-foreground text-sm mb-6">
             Showing {sortedProducts.length} products
-          </p>
+          </p> */}
 
           {loading ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

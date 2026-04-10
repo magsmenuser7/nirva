@@ -59,7 +59,7 @@ import pendant from "@/assets/products/pendants/statues3-1.jpeg"
  const collectionProducts = [
    {
     id: 'c1',
-     name: 'Bridal Kundan Necklace',
+     name: 'Bridal Necklace',
      price: 89999,
      image: necklace1,
      category: 'Bridal Collection',
@@ -67,7 +67,7 @@ import pendant from "@/assets/products/pendants/statues3-1.jpeg"
    },
    {
     id: 'c2',
-     name: 'Festive Jhumka Earrings',
+     name: 'Rose Petal Studs',
      price: 15999,
      image: earrings2,
      category: 'Festive Collection',
@@ -82,7 +82,7 @@ import pendant from "@/assets/products/pendants/statues3-1.jpeg"
    },
    {
     id: 'c4',
-     name: 'Temple Heritage Bangle',
+     name: 'Temple Heritage Bracelet',
      price: 42999,
      image: bracelet,
      category: 'Heritage Collection',
@@ -90,7 +90,7 @@ import pendant from "@/assets/products/pendants/statues3-1.jpeg"
    },
   {
     id: 'c5',
-    name: 'Bridal Gold Set',
+    name: 'Bridal Necklace Set',
     price: 125999,
     image: bridalset,
     category: 'Bridal Collection',

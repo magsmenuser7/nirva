@@ -16,7 +16,15 @@ import Banner3 from '@/components/home/Banner3';
 
 const Index = () => {
 
-  const [popupOpen, setPopupOpen] = useState(true);
+  const [popupOpen, setPopupOpen] = useState(false);
+
+useEffect(() => {
+  const user = localStorage.getItem("nirvaUser");
+
+  if (!user) {
+    setPopupOpen(true);
+  }
+}, []);
 
 
 

@@ -78,6 +78,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   // ================= FORM SUBMIT =================
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+    
     debugger;
     e.preventDefault();
     setIsLoading(true);
@@ -102,14 +103,23 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
 
       toast({
         title: "Welcome Back",
-        description: "You are already registered"
+        description: "Thank you for returning to NIRVA!"
       });
 
-      setSuccessMessage("Registered Successfully");
+      setSuccessMessage("Welcome to NIRVA!");
       setTimeout(() => {
-        setIsLoggedIn(true);
-        onClose();
-      }, 800);
+  localStorage.setItem(
+    "nirvaUser",
+    JSON.stringify({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone
+    })
+  );
+
+  setIsLoggedIn(true);
+  onClose();
+}, 800);
 
       setIsLoading(false);
       return;
@@ -133,22 +143,31 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
       saveUser({ email });
 
       toast({
-        title: "Registered successfully",
-        description: "Details submitted successfully"
+        title: "Welcome to NIRVA",
+        description: "Thank you for joining NIRVA! Explore our exquisite gold collections."
       });
 
-      setSuccessMessage("Registered successfully");
+      setSuccessMessage("Welcome to NIRVA!");
 
       setTimeout(() => {
-        setIsLoggedIn(true);
-        onClose();
-      }, 1000);
+  localStorage.setItem(
+    "nirvaUser",
+    JSON.stringify({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone
+    })
+  );
+
+  setIsLoggedIn(true);
+  onClose();
+}, 1000);
 
     } catch (err) {
 
       console.error("EmailJS Error:", err);
 
-      setError("Registration failed");
+      setError("Failed to enter NIRVA. Please try again later.");
 
       toast({
         title: "Error",
@@ -178,7 +197,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
 
             {/* LEFT IMAGE SLIDER */}
 
-            <div className="relative bg-navy hidden md:block">
+            <div className="relative bg-black hidden md:block">
 
               <AnimatePresence mode="wait">
                 <motion.img
@@ -195,11 +214,11 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4">
 
                 <button onClick={prevSlide} className="p-2 bg-card/30 rounded-full">
-                  <ChevronLeft />
+                  {/* <ChevronLeft /> */}
                 </button>
 
                 <button onClick={nextSlide} className="p-2 bg-card/30 rounded-full">
-                  <ChevronRight />
+                  {/* <ChevronRight /> */}
                 </button>
 
               </div>
@@ -247,7 +266,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                   <Input
                     type="tel"
                     required
-                    placeholder="+91 9876543210"
+                    placeholder="Enter your phone number"
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
                     }

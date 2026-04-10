@@ -38,14 +38,14 @@ export const PromoBannerSection = () => {
               <span className="text-accent text-xs font-semibold ml-1">OFF*</span>
               <p className="text-xs text-muted-foreground mt-1">on all 9KT Gold Designs</p>
             </div>
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <Link
                 to="/shop"
                 className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold text-sm tracking-wider uppercase rounded hover:bg-primary/90 transition-colors"
               >
                 Shop Now
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
 

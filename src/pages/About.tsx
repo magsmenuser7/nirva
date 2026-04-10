@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Layout } from '@/components/layout/Layout';
 import { Award, Users, Gem, Heart } from 'lucide-react';
-import heroImage from '@/assets/hero-jewelry.jpg';
+import heroImage from '@/assets/banners/green-necklace.jpg';
 
 const values = [
   {
@@ -32,7 +32,7 @@ const About = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-hero relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src={heroImage} alt="" className="w-full h-full object-cover" />
+          
         </div>
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
@@ -45,10 +45,10 @@ const About = () => {
               Our Story
             </span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary-foreground mb-6">
-              Crafting Elegance Since 1985
+              Crafting Elegance
             </h1>
             <p className="text-primary-foreground/80 text-lg leading-relaxed">
-              For over three decades, NIRVA has been synonymous with exceptional craftsmanship 
+              For over many years, NIRVA has been synonymous with exceptional craftsmanship 
               and timeless elegance in 9K gold jewelry.
             </p>
           </motion.div>
@@ -86,21 +86,20 @@ const About = () => {
                 Where Tradition Meets Artistry
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>
-                  Founded in 1985 by master jeweler Rajesh Kumar, NIRVA began as a small workshop 
-                  in the heart of Mumbai's jewelry district. With a deep respect for traditional 
-                  craftsmanship and an eye for contemporary design, we set out to create jewelry 
-                  that would be treasured for generations.
-                </p>
-                <p>
-                  Our name "NIRVA" is inspired by the peacock - a symbol of beauty, grace, and 
-                  immortality in Indian culture. Just like the peacock displays its magnificent 
-                  feathers, we believe jewelry should bring out the inner radiance of every wearer.
-                </p>
-                <p>
-                  Today, NIRVA continues this legacy with a team of over 50 skilled artisans, 
-                  each carrying forward the traditions passed down through generations while 
-                  embracing modern techniques to create truly exceptional pieces.
+                <p className="text-xl">
+                  Some beginnings don’t need to be loud to be meaningful.<br /><br />
+
+They arrive gently, yet stay with us forever.<br /><br />
+
+At Nirva, we believe your first piece of gold is more than just jewellery. It is a moment of becoming. A first achievement. A heartfelt gift. A quiet celebration of how far you have come, and all that lies ahead.<br /><br />
+
+Every Nirva creation is designed to honour these beginnings. Refined in form and balanced in brilliance, our pieces carry the essence of tradition without excess, and luxury without noise. They are made not just to be worn, but to be remembered.<br /><br />
+
+Crafted for life’s meaningful milestones, yet light enough for everyday elegance, Nirva brings gold closer to your journey. It becomes a part of your present, not just your someday.<br /><br />
+
+Because when a moment shapes your story, it deserves to be marked gently, beautifully, and forever, in gold.<br /><br />
+
+<span className="font-bold">Nirva. The start of something golden.</span>
                 </p>
               </div>
             </motion.div>

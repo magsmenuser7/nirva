@@ -5,7 +5,7 @@ import gridLeft from "@/assets/grid-image-left.jpg";
 import gridRightTop from "@/assets/grid-image-right-top.jpg";
 import gridRightBottom from "@/assets/grid-image-right-bottom.jpg";
 import leftimage from "@/assets/banners/green-necklace.jpg"
-import rightTopImage from "@/assets/banners/banner2.jpeg"
+import rightTopImage from "@/assets/banners/3cc647c1-0c21-4ac3-92de-c984fd958186.jpg"
 import rightBottomImage from "@/assets/products/necklace/necklace1-1.jpeg"
 
 export const ImageGridSection = () => {

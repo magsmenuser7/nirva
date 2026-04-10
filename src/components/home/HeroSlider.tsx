@@ -9,7 +9,7 @@ import ringsImage from '@/assets/category-rings.jpg';
 import braceletsImage from '@/assets/category-bracelets.jpg';
 import earringsImage from '@/assets/category-earrings.jpg';
 import banner1 from "/assets/banners/_RAJ3855.jpeg";
-import banner2 from "@/assets/banners/redesigned.jpg";
+import banner2 from "@/assets/banners/blackdress.jpeg";
 import banner3 from "@/assets/banners/banner3.jpeg";
 import banner4 from "@/assets/banners/9b58e3d1-a967-4045-a679-565e8e651cdf.jpg";
 import banner5 from "@/assets/banners/banner5.jpeg";
@@ -19,35 +19,35 @@ const products = [
   {
     id: 1,
     image: banner6,
-    name: 'Royal Heritage Necklace',
+    name: 'Heritage Necklace Set',
     price: '₹34000',
     description: 'Timeless elegance in 9K gold',
   },
   {
     id: 2,
     image: banner2,
-    name: 'Pearl Cascade Necklace',
+    name: 'Pearl Cascade Set',
     price: '₹28000',
     description: 'Graceful pearls meet golden luxury',
   },
   {
     id: 3,
     image: banner3,
-    name: 'Eternal Bond Ring',
+    name: 'Eternal Necklace Set',
     price: '₹32000',
     description: 'Symbol of everlasting love',
   },
   {
     id: 4,
     image: banner4,
-    name: 'Golden Radiance Bracelet',
+    name: 'Antique Necklace',
     price: '₹25000',
-    description: 'Handcrafted brilliance for your wrist',
+    description: 'Handcrafted brilliance for your special moments',
   },
   {
     id: 5,
     image: banner5,
-    name: 'Celestial Drop Earrings',
+    name: 'Celestial Radiance Necklace Set',
     price: '₹30000',
     description: 'Elegance that frames your face',
   },
@@ -90,7 +90,7 @@ export const HeroSlider = () => {
       </AnimatePresence>
 
       {/* Content */}
-      <div className="relative z-10 h-full container mx-auto px-4 lg:px-8 flex items-center">
+      <div className="relative z-10 h-full container mx-auto px-4 lg:px-16 flex items-center">
         <div className="max-w-2xl pt-20">
           <AnimatePresence mode="wait">
             <motion.div
@@ -142,14 +142,14 @@ export const HeroSlider = () => {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 p-3 bg-card/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-card transition-colors text-foreground"
+        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 p-3  backdrop-blur-sm rounded-full shadow-lg hover:bg-card transition-colors text-foreground"
         aria-label="Previous product"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 p-3 bg-card/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-card transition-colors text-foreground"
+        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 p-3  backdrop-blur-sm rounded-full shadow-lg hover:bg-card transition-colors text-foreground"
         aria-label="Next product"
       >
         <ChevronRight className="w-6 h-6" />

@@ -13,8 +13,8 @@ const footerLinks = {
   company: [
     { name: 'About Us', path: '/about' },
     { name: 'Our Story', path: '/about' },
-    { name: 'Craftsmanship', path: '/about#craftsmanship' },
-    { name: 'Careers', path: '/careers' },
+    { name: 'Craftsmanship', path: '/about' },
+    // { name: 'Careers', path: '/careers' },
   ],
   support: [
     { name: 'Contact Us', path: '/contact' },
@@ -26,9 +26,9 @@ const footerLinks = {
 
 const socialLinks = [
   { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Youtube, href: '#', label: 'Youtube' },
+  { icon: Instagram, href: 'https://www.instagram.com/nirva9kjewellers/', label: 'Instagram' },
+  // { icon: Twitter, href: '#', label: 'Twitter' },
+  // { icon: Youtube, href: '#', label: 'Youtube' },
 ];
 
 export const Footer = () => {
