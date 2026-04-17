@@ -1,9 +1,5 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import ringsImage from '@/assets/category-rings.jpg';
-import necklacesImage from '@/assets/category-necklaces.jpg';
-import braceletsImage from '@/assets/category-bracelets.jpg';
-import earringsImage from '@/assets/category-earrings.jpg';
 import Bangles from "@/assets/products/bangles/Bangle1-2.jpeg"
 import neklaces from "@/assets/products/necklace/necklace4-1.jpeg"
 import earrings from "@/assets/products/earrings/earrings2-1.jpeg"

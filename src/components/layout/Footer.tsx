@@ -25,8 +25,8 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Instagram, href: 'https://www.instagram.com/nirva9kjewellers/', label: 'Instagram' },
+  { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61587642564935', label: 'Facebook', target: "_blank", rel: "noopener"  },
+  { icon: Instagram, href: 'https://www.instagram.com/nirva9kjewellers/', label: 'Instagram', target: "_blank", rel: "noopener" },
   // { icon: Twitter, href: '#', label: 'Twitter' },
   // { icon: Youtube, href: '#', label: 'Youtube' },
 ];
@@ -129,7 +129,10 @@ export const Footer = () => {
                 <a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.label}
+                  
                   className="w-10 h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/60 hover:text-accent hover:border-accent transition-colors"
                 >
                   <social.icon className="w-4 h-4" />

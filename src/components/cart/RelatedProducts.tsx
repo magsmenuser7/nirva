@@ -5,6 +5,10 @@
  import { useCart } from '@/contexts/CartContext';
  import { useWishlist } from '@/contexts/WishlistContext';
  import { useToast } from '@/hooks/use-toast';
+ import bangles from "@/assets/products/bangles/Bangle2-1.jpeg";
+ import earrings from "@/assets/products/earrings/earrings3-1.jpeg";
+ import necklace from "@/assets/products/necklace/necklace2-1.jpeg";
+ import pendant from "@/assets/products/pendants/statues3-1.jpeg";
  
  // Mock related products - in production, these would come from Shopify API
  const relatedProducts = [
@@ -13,7 +17,7 @@
      name: 'Diamond Stud Earrings',
      price: 24999,
      originalPrice: 29999,
-     image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=400&fit=crop',
+     image: earrings,
      category: 'Earrings',
    },
    {
@@ -21,7 +25,7 @@
      name: 'Pearl Necklace Set',
      price: 18500,
      originalPrice: 22000,
-     image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop',
+     image: necklace,
      category: 'Necklaces',
    },
    {
@@ -29,16 +33,16 @@
      name: 'Gold Bangles',
      price: 35000,
      originalPrice: 40000,
-     image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=400&fit=crop',
+     image: bangles,
      category: 'Bracelets',
    },
    {
      id: 'related-4',
-     name: 'Sapphire Ring',
+     name: 'Pendant',
      price: 42000,
      originalPrice: 48000,
-     image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=400&fit=crop',
-     category: 'Rings',
+     image: pendant,
+     category: 'Pendants',
    },
  ];
  

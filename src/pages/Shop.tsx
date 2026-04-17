@@ -140,7 +140,7 @@ const Shop = () => {
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           {/* Filters Bar */}
-          {/* <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-border">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-border">
             <div className="flex flex-wrap gap-2">
               {categories.map((cat) => (
                 <button
@@ -188,11 +188,11 @@ const Shop = () => {
                 </button>
               </div>
             </div>
-          </div> */}
+          </div>
 
-          {/* <p className="text-muted-foreground text-sm mb-6">
+          <p className="text-muted-foreground text-sm mb-6">
             Showing {sortedProducts.length} products
-          </p> */}
+          </p>
 
           {loading ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -258,23 +258,23 @@ const Shop = () => {
                           >
                             <Heart className={`w-4 h-4 ${isInWishlist(product.node.id) ? 'fill-current' : ''}`} />
                           </button>
-                          <Link
-                            to={`/product/${id}`}
-                            className="w-9 h-9 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors text-foreground hover:text-accent"
-                          >
-                            <Eye className="w-4 h-4" />
-                          </Link>
+                         <div className="w-9 h-9 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:text-accent">
+  <Eye className="w-4 h-4" />
+</div>
                         </div>
                       </Link>
 
                       <div className="p-4">
-                        <Link to={`/product/${id}`}>
-                          <h3 className="font-display text-lg text-foreground mt-1 mb-2 hover:text-accent transition-colors line-clamp-1">
-                            {product.node.title}
-                          </h3>
-                        </Link>
+                        <h2 className="font-medium text-lg mb-2 line-clamp-2 text-foreground">
+    {product.node.title}
+  </h2>
+                       {/* <div className="w-9 h-9 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:text-accent">
+  
+                      </div> */}
+                      
                         <div className="flex items-center gap-2 mb-4">
                           <span className="text-accent font-semibold text-lg">
+
                             ₹{price.toLocaleString('en-IN')}
                           </span>
                         </div>

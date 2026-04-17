@@ -214,7 +214,16 @@ import { useNavigate } from 'react-router-dom';
  
    return (
      <Dialog open={isOpen} onOpenChange={handleClose}>
-        <DialogContent className="max-w-[712px] p-0 overflow-hidden bg-card">
+       <DialogContent 
+  className="
+    max-w-[712px] 
+    w-[95vw] 
+    max-h-[90vh] 
+    p-0 
+    overflow-y-auto 
+    bg-card
+  "
+>
          <button
            onClick={handleClose}
            className="absolute right-4 top-4 z-50 p-2 rounded-full bg-background/80 hover:bg-background transition-colors"

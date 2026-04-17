@@ -7,25 +7,32 @@ import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
 import necklacesImage from '@/assets/category-necklaces.jpg';
 
+
+import { useEffect} from 'react';
+import { fetchShopifyProducts, type ShopifyProduct } from '@/lib/shopify';
+
+
+
 // Mock product data - will be replaced with Shopify data
-const productData = {
-  id: '1',
-  name: 'Royal Heritage Necklace',
-  price: 45999,
-  originalPrice: 52999,
-  description: 'This exquisite 9K gold necklace is a masterpiece of traditional craftsmanship, featuring intricate filigree work and delicate detailing. Each piece is handcrafted by skilled artisans, ensuring that no two pieces are exactly alike.',
-  images: [necklacesImage, necklacesImage, necklacesImage],
-  category: 'Necklaces',
-  material: '9K Gold',
-  weight: '12.5 grams',
-  inStock: true,
-  features: [
-    'BIS Hallmarked 9K Gold',
-    'Handcrafted by skilled artisans',
-    'Comes with certificate of authenticity',
-    'Elegant gift packaging included',
-  ],
-};
+// const productData = {
+//   id: '1',
+//   name: 'Royal Heritage Necklace',
+//   price: 45999,
+//   originalPrice: 52999,
+//   description: 'This exquisite 9K gold necklace is a masterpiece of traditional craftsmanship, featuring intricate filigree work and delicate detailing. Each piece is handcrafted by skilled artisans, ensuring that no two pieces are exactly alike.',
+//   images: [necklacesImage, necklacesImage, necklacesImage],
+//   category: 'Necklaces',
+//   material: '9K Gold',
+//   weight: '12.5 grams',
+//   inStock: true,
+//   features: [
+//     'BIS Hallmarked 9K Gold',
+//     'Handcrafted by skilled artisans',
+//     'Comes with certificate of authenticity',
+//     'Elegant gift packaging included',
+//   ],
+// };
+
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('en-IN', {
@@ -40,17 +47,49 @@ const ProductDetail = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { addItem } = useCart();
+  
 
   const handleAddToCart = () => {
-    addItem({
-      id: productData.id,
-      name: productData.name,
-      price: productData.price,
-      image: productData.images[0],
-    });
-  };
+  if (!variant) return;
+  addItem({
+    id: variant.id,
+    name: product.node.title,
+    price: parseFloat(variant.price.amount),
+    image: product.node.images.edges[0]?.node.url || '',
+  });
+};
 
+const [product, setProduct] = useState<ShopifyProduct | null>(null);
+
+
+
+useEffect(() => {
+  fetchShopifyProducts(50).then((products) => {
+    const found = products.find((p) =>
+      p.node.id.includes(id || '')
+    );
+    setProduct(found || null);
+  });
+}, [id]);
+
+// const variant = product.node.variants.edges[0]?.node;
+
+
+
+
+
+if (!product) {
+  return <div className="pt-32 text-center">Loading...</div>;
+}
+
+const variant = product.node.variants.edges[0]?.node;
+const price = variant ? parseFloat(variant.price.amount) : 0;
+
+
+const images = product.node.images.edges.map(img => img.node.url);
   return (
+
+    
     <Layout>
       {/* Breadcrumb */}
       <div className="pt-28 pb-4 bg-secondary/30">
@@ -64,30 +103,29 @@ const ProductDetail = () => {
               Shop
             </Link>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            <span className="text-foreground">{productData.name}</span>
+            <span className="text-foreground">{product?.node.title}</span>
           </nav>
         </div>
       </div>
+
 
       {/* Product Content */}
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
             {/* Image Gallery */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="relative aspect-square rounded-lg overflow-hidden bg-card shadow-elegant mb-4">
-                <img
-                  src={productData.images[selectedImage]}
-                  alt={productData.name}
-                  className="w-full h-full object-cover"
-                />
+              <div className="relative aspect-landscape rounded-lg overflow-hidden bg-card shadow-elegant mb-4">
+               
+                 <img src={images[selectedImage]}  alt={`Product Image ${selectedImage + 1}`} className="w-full h-full object-cover" />
               </div>
               <div className="grid grid-cols-3 gap-4">
-                {productData.images.map((img, idx) => (
+                {images.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setSelectedImage(idx)}
@@ -108,43 +146,34 @@ const ProductDetail = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <span className="text-accent text-sm font-medium uppercase tracking-wider">
-                {productData.category}
+               
               </span>
               <h1 className="font-display text-3xl md:text-4xl text-foreground mt-2 mb-4">
-                {productData.name}
+                {product?.node.title}
               </h1>
 
               {/* Price */}
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-accent font-display text-3xl">
-                  {formatPrice(productData.price)}
-                </span>
-                {productData.originalPrice && (
-                  <>
-                    <span className="text-muted-foreground line-through text-xl">
-                      {formatPrice(productData.originalPrice)}
-                    </span>
-                    <span className="px-2 py-1 bg-destructive/10 text-destructive text-sm font-medium rounded">
-                      {Math.round((1 - productData.price / productData.originalPrice) * 100)}% OFF
-                    </span>
-                  </>
-                )}
-              </div>
+              <div className="flex items-center gap-3 mb-6">
+  <span className="text-accent font-display text-3xl">
+    {formatPrice(price)}
+  </span>
+  <span className="text-sm text-muted-foreground">Inclusive of all taxes</span>
+</div>
 
               {/* Description */}
               <p className="text-muted-foreground leading-relaxed mb-6">
-                {productData.description}
+                {product.node.description}
               </p>
 
               {/* Specs */}
               <div className="grid grid-cols-2 gap-4 mb-6 p-4 bg-secondary/50 rounded-lg">
                 <div>
                   <span className="text-muted-foreground text-sm">Material</span>
-                  <p className="font-medium">{productData.material}</p>
+                  {/* <p className="font-medium">{productData.material}</p> */}
                 </div>
                 <div>
                   <span className="text-muted-foreground text-sm">Weight</span>
-                  <p className="font-medium">{productData.weight}</p>
+                  {/* <p className="font-medium">{productData.weight}</p> */}
                 </div>
               </div>
 
