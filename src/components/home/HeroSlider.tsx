@@ -12,13 +12,15 @@ import banner1 from "/assets/banners/_RAJ3855.jpeg";
 import banner2 from "@/assets/banners/blackdress.jpeg";
 import banner3 from "@/assets/banners/banner3.jpeg";
 import banner4 from "@/assets/banners/9b58e3d1-a967-4045-a679-565e8e651cdf.jpeg";
-import banner5 from "@/assets/banners/banner5.jpeg";
+import banner5 from "@/assets/banners/eb7bf933-a3e3-4689-aac5-0367408c3914.jpg";
 import banner6 from "@/assets/banners/f0517307-bed7-4d93-bdb0-3b9d04053439.jpg";
+import banner7 from "@/assets/banners/Untitled design.png"
+import banner8 from "@/assets/banners/b9893099-f137-4fa1-ad61-0a50b8f0a204.jpg"
 
 const products = [
   {
     id: 1,
-    image: banner6,
+    image: banner7,
     name: 'Heritage Necklace Set',
     price: '₹34000',
     description: 'Timeless elegance in 9K gold',
@@ -32,7 +34,7 @@ const products = [
   },
   {
     id: 3,
-    image: banner3,
+    image: banner8,
     name: 'Eternal Necklace Set',
     price: '₹32000',
     description: 'Symbol of everlasting love',
