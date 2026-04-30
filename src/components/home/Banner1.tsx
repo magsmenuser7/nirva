@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import model from "@/assets/banners/9b58e3d1-a967-4045-a679-565e8e651cdf.jpg"
+import model from "@/assets/banners/9b58e3d1-a967-4045-a679-565e8e651cdf.jpeg"
 
 export default function Banner1() {
   return (

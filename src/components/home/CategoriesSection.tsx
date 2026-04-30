@@ -63,8 +63,8 @@ export const CategoriesSection = () => {
         {/* Categories Grid */}
         <motion.div
           variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          // initial="hidden"
+          // whileInView="visible"
           viewport={{ once: true }}
           className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
         >

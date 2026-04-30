@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import heroVideo from '@/assets/jewelry-hero-video.mp4';
+import heroVideo from '@/assets/jewellery-video.mp4';
 
 const collections = ['Necklaces', 'Rings', 'Bracelets', 'Earrings', 'Celebrity Picks'];
 

@@ -197,7 +197,7 @@ const Shop = () => {
           {loading ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="bg-card rounded-lg overflow-hidden shadow-card animate-pulse">
+                <div key={i} className="bg-card rounded-lg overflow-hidden shadow-card">
                   <div className="aspect-square bg-secondary" />
                   <div className="p-4 space-y-3">
                     <div className="h-3 bg-secondary rounded w-1/3" />
@@ -226,9 +226,9 @@ const Shop = () => {
                 return (
                   <motion.div
                     key={product.node.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    // initial={{ opacity: 0, y: 20 }}
+                    // animate={{ opacity: 1, y: 0 }}
+                    // transition={{ duration: 0.4, delay: index * 0.05 }}
                     className="group"
                   >
                     <div className="relative bg-card rounded-lg overflow-hidden shadow-card hover-lift">
@@ -237,14 +237,14 @@ const Shop = () => {
                           <img
                             src={img}
                             alt={product.node.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="w-full h-full object-cover  group-hover:scale-105"
                           />
                         ) : (
                           <div className="w-full h-full bg-secondary flex items-center justify-center">
                             <span className="text-muted-foreground text-sm">No image</span>
                           </div>
                         )}
-                        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100">
                           <button
                             onClick={(e) => {
                               e.preventDefault();

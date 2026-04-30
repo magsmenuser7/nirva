@@ -152,7 +152,7 @@ const Collections = () => {
                 <img
                   src={collection.image}
                   alt={collection.name}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="absolute inset-0 w-full h-full object-cover  group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -180,7 +180,7 @@ const Collections = () => {
           {loading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="bg-card rounded-lg overflow-hidden shadow-card animate-pulse">
+                <div key={i} className="bg-card rounded-lg overflow-hidden shadow-card">
                   <div className="aspect-square bg-secondary" />
                   <div className="p-4 space-y-3">
                     <div className="h-3 bg-secondary rounded w-1/3" />
@@ -205,9 +205,9 @@ const Collections = () => {
                 return (
                   <motion.div
                     key={product.node.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
+                    // initial={{ opacity: 0, y: 20 }}
+                    // animate={{ opacity: 1, y: 0 }}
+                    // transition={{ delay: index * 0.05 }}
                     className="group bg-card rounded-lg overflow-hidden shadow-card hover-lift"
                   >
                     <Link to={`/product/${id}`} className="block relative aspect-square overflow-hidden">

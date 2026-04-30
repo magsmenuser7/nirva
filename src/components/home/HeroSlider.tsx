@@ -11,7 +11,7 @@ import earringsImage from '@/assets/category-earrings.jpg';
 import banner1 from "/assets/banners/_RAJ3855.jpeg";
 import banner2 from "@/assets/banners/blackdress.jpeg";
 import banner3 from "@/assets/banners/banner3.jpeg";
-import banner4 from "@/assets/banners/9b58e3d1-a967-4045-a679-565e8e651cdf.jpg";
+import banner4 from "@/assets/banners/9b58e3d1-a967-4045-a679-565e8e651cdf.jpeg";
 import banner5 from "@/assets/banners/banner5.jpeg";
 import banner6 from "@/assets/banners/f0517307-bed7-4d93-bdb0-3b9d04053439.jpg";
 
@@ -72,10 +72,10 @@ export const HeroSlider = () => {
       <AnimatePresence>
         <motion.div
           key={products[currentIndex].id}
-          initial={{ opacity: 0, scale: 1.1 }}
+          // initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.7 }}
+          // transition={{ duration: 0.7 }}
           className="absolute inset-0"
         >
           <img

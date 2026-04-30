@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroImage from '@/assets/hero-jewelry.jpg';
+import heroImage from '@/assets/hero-jewelry.jpeg';
 
 export const HeroSection = () => {
   return (
