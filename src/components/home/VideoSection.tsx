@@ -106,6 +106,7 @@ export const VideoSection = () => {
           </Button>
         </motion.div>
       </div>
+      <p></p>
 
       {/* Video Controls */}
       {/* <div className="absolute bottom-6 right-6 z-20 flex gap-3">
