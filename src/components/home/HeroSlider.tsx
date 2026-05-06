@@ -16,11 +16,13 @@ import banner5 from "@/assets/banners/eb7bf933-a3e3-4689-aac5-0367408c3914.jpg";
 import banner6 from "@/assets/banners/f0517307-bed7-4d93-bdb0-3b9d04053439.jpg";
 import banner7 from "@/assets/banners/Untitled design.png"
 import banner8 from "@/assets/banners/b9893099-f137-4fa1-ad61-0a50b8f0a204.jpg"
+import banner9 from "@/assets/banners/newbanner1.jpeg"
+import banner10 from "@/assets/banners/Nirva1.jpeg"
 
 const products = [
   {
     id: 1,
-    image: banner7,
+    image: banner9,
     name: 'Heritage Necklace Set',
     price: '₹34000',
     description: 'Timeless elegance in 9K gold',
@@ -48,7 +50,7 @@ const products = [
   },
   {
     id: 5,
-    image: banner5,
+    image: banner10,
     name: 'Celestial Radiance Necklace Set',
     price: '₹30000',
     description: 'Elegance that frames your face',
