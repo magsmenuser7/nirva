@@ -144,14 +144,14 @@ export const HeroSlider = () => {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 p-3  backdrop-blur-sm rounded-full shadow-lg hover:bg-card transition-colors text-foreground"
+        className="hidden lg:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 p-3  backdrop-blur-sm rounded-full shadow-lg hover:bg-card transition-colors text-foreground bg-white"
         aria-label="Previous product"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 p-3  backdrop-blur-sm rounded-full shadow-lg hover:bg-card transition-colors text-foreground"
+        className="hidden lg:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 p-3  backdrop-blur-sm rounded-full shadow-lg hover:bg-card transition-colors text-foreground bg-white"
         aria-label="Next product"
       >
         <ChevronRight className="w-6 h-6" />

@@ -59,7 +59,7 @@ export const Header = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="lg:hidden p-2 text-primary hover:text-accent transition-colors"
+              className="lg:hidden p-2 text-primary hover:text-accent transition-colors text-yellow-600 hover:text-yellow-400"
               aria-label="Open menu"
             >
               <Menu className="w-6 h-6" />
