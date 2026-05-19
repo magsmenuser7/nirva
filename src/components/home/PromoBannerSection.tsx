@@ -9,112 +9,197 @@ export const PromoBannerSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetchShopifyProducts(12).then(setProducts);
+    fetchShopifyProducts(20).then(setProducts);
   }, []);
 
   const scroll = (dir: "left" | "right") => {
     if (!scrollRef.current) return;
-    const amount = 280;
-    scrollRef.current.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
+
+    scrollRef.current.scrollBy({
+      left: dir === "left" ? -320 : 320,
+      behavior: "smooth",
+    });
   };
 
   return (
-    <section className="pb-16">
-      <div className="flex flex-col lg:flex-row min-h-[340px]">
-        {/* Left: Promo banner */}
-        <div className="lg:w-[45%] bg-gradient-to-br from-accent/20 via-accent/10 to-gold-light/20 relative flex items-center justify-center p-8 lg:p-12">
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent" />
-          <div className="relative z-10 text-center">
-            <h3 className="font-display text-sm tracking-widest text-accent mb-2 uppercase">Nirva 9KT Gold</h3>
-            <p className="font-display text-2xl lg:text-3xl text-foreground mb-3 leading-tight">
-              Love that shines
-              <br />
-              in 9 Karat Gold!
+    <section className="relative overflow-hidden py-20 bg-[#f8f5ef]">
+      {/* Background glow */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-yellow-100/40 blur-3xl rounded-full" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-emerald-100/30 blur-3xl rounded-full" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+        {/* Hero Section */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div>
+            <p className="uppercase tracking-[6px] text-sm text-[#b48a3c] mb-4">
+              Nirva 9KT Gold
             </p>
-            <div className="inline-block border-2 border-foreground/20 rounded-lg px-6 py-4 my-4 bg-card/60 backdrop-blur-sm">
-              <span className="font-display text-3xl lg:text-4xl font-bold text-foreground">
-                FLAT 20<span className="text-lg align-top">%</span>
-              </span>
-              <span className="text-accent text-xs font-semibold ml-1">OFF*</span>
-              <p className="text-xs text-muted-foreground mt-1">on all 9KT Gold Designs</p>
-            </div>
-            {/* <div className="mt-4">
+
+            <h2 className="text-5xl lg:text-7xl leading-[1.05] font-light text-[#132238]">
+              Jewelry that
+              <br />
+              feels timeless.
+            </h2>
+
+            <p className="mt-6 text-[#5c6773] text-lg leading-relaxed max-w-xl">
+              Discover handcrafted 9KT gold designs made for everyday elegance
+              and unforgettable moments.
+            </p>
+
+            {/* CTA Row */}
+            <div className="flex items-center gap-5 mt-10">
               <Link
                 to="/shop"
-                className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold text-sm tracking-wider uppercase rounded hover:bg-primary/90 transition-colors"
+                className="px-8 py-4 bg-[#132238] text-white rounded-full text-sm tracking-wider uppercase hover:scale-105 transition-all duration-300"
               >
-                Shop Now
+                Shop Collection
               </Link>
-            </div> */}
+
+              <div className="bg-white shadow-xl border border-black/5 rounded-2xl px-6 py-4">
+                <div className="flex items-end gap-1">
+                  <span className="text-4xl font-semibold text-[#132238]">
+                    20%
+                  </span>
+                  <span className="mb-1 text-[#b48a3c] font-medium">OFF</span>
+                </div>
+
+                <p className="text-sm text-gray-500 mt-1">
+                  On all 9KT gold designs
+                </p>
+              </div>
+            </div>
           </div>
+
+          {/* Featured Product */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#132238]/10 to-[#b48a3c]/10 rounded-[40px] blur-2xl" />
+
+            <div className="relative bg-white/70 backdrop-blur-xl border border-white/50 rounded-[40px] p-6 shadow-2xl">
+              {products[14] && (
+                <>
+                  <div className="aspect-[4/5] overflow-hidden rounded-[30px] bg-[#f5f5f5]">
+                    <img
+                      src={products[14].node.images.edges[0]?.node?.url}
+                      alt={products[0].node.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+
+                  <div className="mt-5 flex items-center justify-between">
+                    <div>
+                      <p className="text-lg text-[#132238] font-medium">
+                        {products[14].node.title}
+                      </p>
+
+                      <p className="text-[#b48a3c] text-xl font-semibold mt-1">
+                        ₹
+                        {parseFloat(
+                          products[14].node.priceRange.minVariantPrice.amount
+                        ).toLocaleString("en-IN")}
+                      </p>
+                    </div>
+
+                    <Link
+                      to={`/product/${products[14].node.id
+                        .split("/")
+                        .pop()}`}
+                      className="px-5 py-3 bg-[#132238] text-white rounded-full text-sm"
+                    >
+                      View
+                    </Link>
+                  </div>
+                </>
+              )}
+            </div>
+          </motion.div>
         </div>
 
-        {/* Right: Product carousel */}
-        <div className="lg:w-[55%] bg-secondary/30 flex flex-col justify-center py-6 px-4 lg:px-8 relative">
-          <div className="flex items-center gap-2 mb-4">
-            <button
-              onClick={() => scroll("left")}
-              className="w-9 h-9 rounded-full border border-border bg-card flex items-center justify-center hover:bg-secondary transition-colors"
-            >
-              <ChevronLeft className="w-4 h-4 text-foreground" />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="w-9 h-9 rounded-full border border-border bg-card flex items-center justify-center hover:bg-secondary transition-colors"
-            >
-              <ChevronRight className="w-4 h-4 text-foreground" />
-            </button>
+        {/* Product Rail */}
+        <div className="mt-20">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <p className="text-sm tracking-[4px] uppercase text-[#b48a3c]">
+                Trending Pieces
+              </p>
+
+              <h3 className="text-3xl text-[#132238] mt-2">
+                Curated for modern elegance
+              </h3>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => scroll("left")}
+                className="w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              <button
+                onClick={() => scroll("right")}
+                className="w-11 h-11 rounded-full bg-[#132238] text-white flex items-center justify-center"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
-          <div
-            ref={scrollRef}
-            className="flex gap-4 overflow-x-auto scrollbar-hide pb-2"
-            style={{ scrollbarWidth: "none" }}
-          >
+         <div
+  ref={scrollRef}
+  className="flex gap-6 overflow-x-scroll snap-x snap-mandatory pb-4 no-scrollbar"
+>
             {products.map((product) => {
               const img = product.node.images.edges[0]?.node?.url;
-              const price = parseFloat(product.node.priceRange.minVariantPrice.amount);
-              const originalPrice = Math.round(price * 1.2);
+
+              const price = parseFloat(
+                product.node.priceRange.minVariantPrice.amount
+              );
+
               const id = product.node.id.split("/").pop();
+
               return (
-                <Link key={product.node.id} to={`/product/${id}`} className="shrink-0 w-[200px] group">
+                <Link
+                  key={product.node.id}
+                  to={`/product/${id}`}
+                  className="min-w-[200px] snap-start"
+                >
                   <motion.div
-                    whileHover={{ y: -4 }}
-                    className="bg-card rounded-lg border border-border/50 overflow-hidden shadow-card"
+                    whileHover={{ y: -8 }}
+                    className="bg-white rounded-[28px] overflow-hidden shadow-lg border border-black/5"
                   >
-                    <div className="aspect-square bg-secondary/20 flex items-center justify-center p-3">
-                      {img ? (
-                        <img
-                          src={img}
-                          alt={product.node.title}
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-muted rounded" />
-                      )}
+                    <div className="aspect-square bg-[#f7f7f7] overflow-hidden">
+                      <img
+                        src={img}
+                        alt={product.node.title}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                      />
                     </div>
-                    <div className="p-3">
-                      <div className="flex items-baseline gap-2 mb-1">
-                        <span className="text-sm font-bold text-foreground">₹{price.toLocaleString("en-IN")}</span>
-                        <span className="text-xs text-muted-foreground line-through">
-                          ₹{originalPrice.toLocaleString("en-IN")}
+
+                    <div className="p-5">
+                      <h4 className="text-[#132238] text-lg truncate">
+                        {product.node.title}
+                      </h4>
+
+                      <div className="flex items-center gap-3 mt-3">
+                        <span className="text-xl font-semibold text-[#132238]">
+                          ₹{price.toLocaleString("en-IN")}
+                        </span>
+
+                        <span className="line-through text-gray-400 text-sm">
+                          ₹{Math.round(price * 1.2).toLocaleString("en-IN")}
                         </span>
                       </div>
-                      <p className="text-xs text-muted-foreground truncate">{product.node.title}</p>
                     </div>
                   </motion.div>
                 </Link>
               );
             })}
-          </div>
-
-          <div className="mt-4 text-right">
-            <Link
-              to="/shop"
-              className="inline-block px-6 py-2.5 bg-primary text-primary-foreground font-semibold text-xs tracking-wider uppercase rounded hover:bg-primary/90 transition-colors"
-            >
-              Shop Now
-            </Link>
           </div>
         </div>
       </div>

@@ -47,7 +47,7 @@ useEffect(() => {
         <CategoriesSection />
           <Banner2 />
         <FeaturedProducts />
-            {/* <Banner3 /> */}
+            <Banner3 />
         <TrustSection />
         <NewsletterSection />
       </Layout>

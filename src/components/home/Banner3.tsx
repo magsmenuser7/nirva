@@ -1,16 +1,18 @@
 import { motion } from "framer-motion";
 import model from "@/assets/banners/9fe57630-84aa-4fb0-bd19-48f27ba1ffcb.jpeg"
+import banner3 from "@/assets/banners/NIRVA copy.jpg"
+import Shop from "@/pages/Shop";
 
 export default function Banner3() {
   return (
-    <section className="relative w-full h-[700px] overflow-hidden">
+    <section className="relative w-full h-[700px] bg-black overflow-hidden">
 
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src={model}
+          src={banner3}
           alt="Luxury Jewellery"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain "
         />
 
         {/* Left Dark Gradient Overlay */}
@@ -27,23 +29,25 @@ export default function Banner3() {
     className="max-w-xl text-white"
   >
     {/* Heading */}
-    <h1 className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight tracking-wide whitespace-nowrap">
+    {/* <h1 className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight tracking-wide whitespace-nowrap">
       Shine Beyond Ordinary
-    </h1>
+    </h1> */}
 
     {/* Subtext */}
-    <p className="mt-4 text-sm md:text-base text-gray-300 max-w-md">
+    {/* <p className="mt-4 text-sm md:text-base text-gray-300 max-w-md">
       Elevate your presence with pieces designed
       <br className="hidden md:block" />
       to captivate every gaze.
-    </p>
+    </p> */}
 
     {/* Button */}
-    <div className="mt-8">
-      <button className="bg-white text-black px-8 py-3 text-sm tracking-widest rounded-md hover:bg-gray-200 transition duration-300">
+   
+    <div className="mt-8 mb-[-40px]">
+      <button className="bg-[#676861] text-black px-8 py-3 text-sm tracking-widest rounded-md hover:bg-black hover:text-white transition duration-300" onClick={() => window.location.href = '/shop'}>
         SHOP NOW
       </button>
     </div>
+   
   </motion.div>
 
 </div>
