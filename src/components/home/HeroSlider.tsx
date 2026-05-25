@@ -104,7 +104,7 @@ export const HeroSlider = () => {
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.5 }}
             >
-              <span className="inline-block text-accent font-medium tracking-widest uppercase text-sm mb-4">
+              {/* <span className="inline-block text-accent font-medium tracking-widest uppercase text-sm mb-4">
                 Exquisite 9K Gold Collection
               </span>
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight mb-4">
@@ -115,20 +115,20 @@ export const HeroSlider = () => {
               </p>
               <p className="text-accent font-display text-3xl md:text-4xl mb-8">
                 {products[currentIndex].price}
-              </p>
-              <div className="flex gap-4">
+              </p> */}
+              {/* <div className="flex gap-4">
                 <Button variant="gold" size="lg" asChild>
                   <Link to="/shop">Shop Now</Link>
                 </Button>
                 <Button variant="outline" size="lg" className="border-primary-foreground/30 text-red hover:bg-primary-foreground/10" asChild>
                   <Link to="/collections">View Collection</Link>
                 </Button>
-              </div>
+              </div> */}
             </motion.div>
           </AnimatePresence>
 
           {/* Trust Badges */}
-          <div className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-primary-foreground/20">
+          {/* <div className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-primary-foreground/20">
             {[
               { label: 'BIS Hallmarked', value: '100%' },
               { label: 'Easy Returns', value: '30 Days' },
@@ -139,7 +139,7 @@ export const HeroSlider = () => {
                 <div className="text-primary-foreground/60 text-sm">{badge.label}</div>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
 
