@@ -51,7 +51,7 @@ const products = [
   {
     id: 5,
     image: banner10,
-    name: 'Celestial Radiance Necklace Set',
+    name: 'Celestial Necklace Set',
     price: '₹30000',
     description: 'Elegance that frames your face',
   },
@@ -123,6 +123,7 @@ export const HeroSlider = () => {
           text-[10px]
           md:text-sm
           font-medium
+          ml-8
         ">
           Exquisite 9K Gold Collection
         </span>
@@ -135,7 +136,8 @@ export const HeroSlider = () => {
           leading-[0.92]
           text-[32px]
           sm:text-6xl
-          md:text-7xl
+          md:text-5xl
+          ml-8
         ">
           {products[currentIndex].name}
         </h1>
@@ -147,6 +149,7 @@ export const HeroSlider = () => {
           text-sm
           md:text-lg
           max-w-sm
+          ml-8
         ">
           {products[currentIndex].description}
         </p>
@@ -158,6 +161,7 @@ export const HeroSlider = () => {
           font-display
           text-3xl
           md:text-4xl
+          ml-8
         ">
           {products[currentIndex].price}
         </p>
@@ -167,6 +171,7 @@ export const HeroSlider = () => {
           mt-6
           flex
           gap-3
+          ml-8
         ">
           <Button
             variant="gold"
@@ -197,7 +202,7 @@ export const HeroSlider = () => {
           </Button>
         </div>
         {/* Trust Badges */} 
-        <div className="hidden md:flex flex-wrap gap-8 mt-12 pt-8 border-t border-primary-foreground/20">
+        <div className="hidden md:flex flex-wrap gap-8 mt-12 pt-8 border-t border-primary-foreground/20 ml-8">
         {[ { label: 'BIS Hallmarked', value: '100%' }, { label: 'Easy Returns', value: '30 Days' }, { label: 'Free Shipping', value: 'Above ₹5000' }, ].map((badge) => ( 
           <div key={badge.label} className="text-primary-foreground"> 
           <div className="text-accent font-display text-2xl">{badge.value}</div> 
@@ -214,7 +219,7 @@ export const HeroSlider = () => {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="hidden lg:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 p-3  backdrop-blur-sm rounded-full shadow-lg hover:bg-card transition-colors text-foreground bg-white"
+        className="hidden lg:flex absolute left-4 lg:left-4 top-1/2 -translate-y-1/2 z-20 p-3  backdrop-blur-sm rounded-full shadow-lg hover:bg-card transition-colors text-foreground bg-white"
         aria-label="Previous product"
       >
         <ChevronLeft className="w-6 h-6" />
