@@ -71,7 +71,7 @@ export const HeroSlider = () => {
   const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-[72vh] md:h-screen w-full overflow-hidden">
       {/* Full-width Background Image Slider */}
       <AnimatePresence>
         <motion.div
@@ -94,54 +94,122 @@ export const HeroSlider = () => {
       </AnimatePresence>
 
       {/* Content */}
-      <div className="relative z-10 h-full container mx-auto px-4 lg:px-16 flex items-center">
-        <div className="max-w-2xl pt-20">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={products[currentIndex].id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 0.5 }}
-            >
-              {/* <span className="inline-block text-accent font-medium tracking-widest uppercase text-sm mb-4">
-                Exquisite 9K Gold Collection
-              </span>
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight mb-4">
-                {products[currentIndex].name}
-              </h1>
-              <p className="text-primary-foreground/80 text-xl mb-2">
-                {products[currentIndex].description}
-              </p>
-              <p className="text-accent font-display text-3xl md:text-4xl mb-8">
-                {products[currentIndex].price}
-              </p> */}
-              {/* <div className="flex gap-4">
-                <Button variant="gold" size="lg" asChild>
-                  <Link to="/shop">Shop Now</Link>
-                </Button>
-                <Button variant="outline" size="lg" className="border-primary-foreground/30 text-red hover:bg-primary-foreground/10" asChild>
-                  <Link to="/collections">View Collection</Link>
-                </Button>
-              </div> */}
-            </motion.div>
-          </AnimatePresence>
+{/* Content */}
+<div className="relative z-10 h-full flex items-end md:items-center">
 
-          {/* Trust Badges */}
-          {/* <div className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-primary-foreground/20">
-            {[
-              { label: 'BIS Hallmarked', value: '100%' },
-              { label: 'Easy Returns', value: '30 Days' },
-              { label: 'Free Shipping', value: 'Above ₹5000' },
-            ].map((badge) => (
-              <div key={badge.label} className="text-primary-foreground">
-                <div className="text-accent font-display text-2xl">{badge.value}</div>
-                <div className="text-primary-foreground/60 text-sm">{badge.label}</div>
-              </div>
-            ))}
-          </div> */}
+  <div className="
+    w-full
+    px-6
+    pb-16
+    md:pb-0
+    lg:px-16
+  ">
+
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={products[currentIndex].id}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-xl"
+      >
+
+        {/* Collection Label */}
+        <span className="
+          text-accent
+          uppercase
+          tracking-[0.22em]
+          text-[10px]
+          md:text-sm
+          font-medium
+        ">
+          Exquisite 9K Gold Collection
+        </span>
+
+        {/* Title */}
+        <h1 className="
+          mt-3
+          font-display
+          text-white
+          leading-[0.92]
+          text-[32px]
+          sm:text-6xl
+          md:text-7xl
+        ">
+          {products[currentIndex].name}
+        </h1>
+
+        {/* Description */}
+        <p className="
+          mt-4
+          text-white/75
+          text-sm
+          md:text-lg
+          max-w-sm
+        ">
+          {products[currentIndex].description}
+        </p>
+
+        {/* Price */}
+        <p className="
+          mt-5
+          text-accent
+          font-display
+          text-3xl
+          md:text-4xl
+        ">
+          {products[currentIndex].price}
+        </p>
+
+        {/* Buttons */}
+        <div className="
+          mt-6
+          flex
+          gap-3
+        ">
+          <Button
+            variant="gold"
+            size="sm"
+            className="px-6"
+            asChild
+          >
+            <Link to="/shop">
+              Shop Now
+            </Link>
+          </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
+            className="
+              border-white/20
+              bg-white/10
+              text-white
+              backdrop-blur-md
+              hover:bg-white/20
+            "
+            asChild
+          >
+            <Link to="/collections">
+              Collection
+            </Link>
+          </Button>
         </div>
-      </div>
+        {/* Trust Badges */} 
+        <div className="hidden md:flex flex-wrap gap-8 mt-12 pt-8 border-t border-primary-foreground/20">
+        {[ { label: 'BIS Hallmarked', value: '100%' }, { label: 'Easy Returns', value: '30 Days' }, { label: 'Free Shipping', value: 'Above ₹5000' }, ].map((badge) => ( 
+          <div key={badge.label} className="text-primary-foreground"> 
+          <div className="text-accent font-display text-2xl">{badge.value}</div> 
+        <div className="text-primary-foreground/60 text-sm">{badge.label}</div>
+         </div> ))} 
+         </div> 
+
+      </motion.div>
+    </AnimatePresence>
+
+  </div>
+</div>
 
       {/* Navigation Arrows */}
       <button
