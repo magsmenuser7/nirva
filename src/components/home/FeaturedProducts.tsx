@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Heart, ShoppingCart, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
 import { useWishlist } from '@/contexts/WishlistContext';
-import { fetchShopifyProducts, type ShopifyProduct } from '@/lib/shopify';
+import { products, type Product } from "@/data/products";
+
+
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('en-IN', {
@@ -16,40 +18,32 @@ const formatPrice = (price: number) => {
 };
 
 export const FeaturedProducts = () => {
-  const [products, setProducts] = useState<ShopifyProduct[]>([]);
-  const [loading, setLoading] = useState(true);
+  const loading = false;
   const { addItem } = useCart();
   const { addItem: addToWishlist, isInWishlist, removeItem: removeFromWishlist } = useWishlist();
 
-  useEffect(() => {
-    fetchShopifyProducts(4).then((prods) => {
-      setProducts(prods);
-      setLoading(false);
-    });
-  }, []);
 
-  const handleAddToCart = (product: ShopifyProduct) => {
-    const variant = product.node.variants.edges[0]?.node;
-    if (!variant) return;
+  const handleAddToCart = (product: Product) => {
     addItem({
-      id: variant.id,
-      name: product.node.title,
-      price: parseFloat(variant.price.amount),
-      image: product.node.images.edges[0]?.node.url || '',
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: product.image,
     });
   };
 
-  const handleToggleWishlist = (product: ShopifyProduct) => {
-    const id = product.node.id;
+  const handleToggleWishlist = (product: Product) => {
+    const id = product.id;
+
     if (isInWishlist(id)) {
       removeFromWishlist(id);
     } else {
       addToWishlist({
         id,
-        name: product.node.title,
-        price: parseFloat(product.node.priceRange.minVariantPrice.amount),
-        image: product.node.images.edges[0]?.node.url || '',
-        category: '',
+        name: product.title,
+        price: product.price,
+        image: product.image,
+        category: product.category,
       });
     }
   };
@@ -93,14 +87,14 @@ export const FeaturedProducts = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {products.map((product, index) => {
-              const img = product.node.images.edges[0]?.node.url;
-              const price = parseFloat(product.node.priceRange.minVariantPrice.amount);
-              const id = product.node.id.split('/').pop();
+            {products.slice(0, 4).map((product, index) => {
+              const img = product.image;
+              const price = product.price;
+              const id = product.id;
 
               return (
                 <motion.div
-                  key={product.node.id}
+                  key={product.id}
                   // initial={{ opacity: 0, y: 30 }}
                   // whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -113,7 +107,7 @@ export const FeaturedProducts = () => {
                       {img ? (
                         <img
                           src={img}
-                          alt={product.node.title}
+                          alt={product.title}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       ) : (
@@ -129,13 +123,12 @@ export const FeaturedProducts = () => {
                             e.preventDefault();
                             handleToggleWishlist(product);
                           }}
-                          className={`w-9 h-9 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors ${
-                            isInWishlist(product.node.id)
-                              ? 'text-destructive'
-                              : 'text-foreground hover:text-accent'
-                          }`}
+                          className={`w-9 h-9 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors ${isInWishlist(product.id)
+                            ? 'text-destructive'
+                            : 'text-foreground hover:text-accent'
+                            }`}
                         >
-                          <Heart className={`w-4 h-4 ${isInWishlist(product.node.id) ? 'fill-current' : ''}`} />
+                          <Heart className={`w-4 h-4 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
                         </button>
                         <Link
                           to={`/product/${id}`}
@@ -150,7 +143,7 @@ export const FeaturedProducts = () => {
                     <div className="p-4">
                       <Link to={`/product/${id}`}>
                         <h3 className="font-display text-lg text-foreground mt-1 mb-2 hover:text-accent transition-colors line-clamp-1">
-                          {product.node.title}
+                          {product.title}
                         </h3>
                       </Link>
                       <div className="flex items-center gap-2 mb-4">

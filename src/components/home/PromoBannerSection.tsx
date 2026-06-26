@@ -2,15 +2,19 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { fetchShopifyProducts, type ShopifyProduct } from "@/lib/shopify";
+// import { fetchShopifyProducts, type ShopifyProduct } from "@/lib/shopify";
+
+import { products, type Product } from "@/data/products";
+
+
 
 export const PromoBannerSection = () => {
-  const [products, setProducts] = useState<ShopifyProduct[]>([]);
+  // const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    fetchShopifyProducts(20).then(setProducts);
-  }, []);
+  // useEffect(() => {
+  //   fetchShopifyProducts(20).then(setProducts);
+  // }, []);
 
   const scroll = (dir: "left" | "right") => {
     if (!scrollRef.current) return;
@@ -81,12 +85,12 @@ export const PromoBannerSection = () => {
             <div className="absolute inset-0 bg-gradient-to-tr from-[#132238]/10 to-[#b48a3c]/10 rounded-[40px] blur-2xl" />
 
             <div className="relative bg-white/70 backdrop-blur-xl border border-white/50 rounded-[40px] p-6 shadow-2xl">
-              {products[14] && (
+              {products.length > 5 && (
                 <>
                   <div className="aspect-[4/5] overflow-hidden rounded-[30px] bg-[#f5f5f5]">
                     <img
-                      src={products[14].node.images.edges[0]?.node?.url}
-                      alt={products[0].node.title}
+                      src={products[5].image}
+                      alt={products[5].title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>
@@ -94,21 +98,16 @@ export const PromoBannerSection = () => {
                   <div className="mt-5 flex items-center justify-between">
                     <div>
                       <p className="text-lg text-[#132238] font-medium">
-                        {products[14].node.title}
+                        {products[5].title}
                       </p>
 
                       <p className="text-[#b48a3c] text-xl font-semibold mt-1">
-                        ₹
-                        {parseFloat(
-                          products[14].node.priceRange.minVariantPrice.amount
-                        ).toLocaleString("en-IN")}
+                        ₹{products[5].price.toLocaleString("en-IN")}
                       </p>
                     </div>
 
                     <Link
-                      to={`/product/${products[14].node.id
-                        .split("/")
-                        .pop()}`}
+                      to={`/product/${products[5].id}`}
                       className="px-5 py-3 bg-[#132238] text-white rounded-full text-sm"
                     >
                       View
@@ -150,22 +149,18 @@ export const PromoBannerSection = () => {
             </div>
           </div>
 
-         <div
-  ref={scrollRef}
-  className="flex gap-6 overflow-x-scroll snap-x snap-mandatory pb-4 no-scrollbar"
->
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-scroll snap-x snap-mandatory pb-4 no-scrollbar"
+          >
             {products.map((product) => {
-              const img = product.node.images.edges[0]?.node?.url;
-
-              const price = parseFloat(
-                product.node.priceRange.minVariantPrice.amount
-              );
-
-              const id = product.node.id.split("/").pop();
+              const img = product.image;
+              const price = product.price;
+              const id = product.id;
 
               return (
                 <Link
-                  key={product.node.id}
+                  key={product.id}
                   to={`/product/${id}`}
                   className="min-w-[200px] snap-start"
                 >
@@ -176,14 +171,14 @@ export const PromoBannerSection = () => {
                     <div className="aspect-square bg-[#f7f7f7] overflow-hidden">
                       <img
                         src={img}
-                        alt={product.node.title}
+                        alt={product.title}
                         className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                       />
                     </div>
 
                     <div className="p-5">
                       <h4 className="text-[#132238] text-lg truncate">
-                        {product.node.title}
+                        {product.title}
                       </h4>
 
                       <div className="flex items-center gap-3 mt-3">

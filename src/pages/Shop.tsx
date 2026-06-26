@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Grid3X3, LayoutGrid, Heart, ShoppingCart, ChevronDown, Eye } from 'lucide-react';
@@ -6,17 +6,19 @@ import { Layout } from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
 import { useWishlist } from '@/contexts/WishlistContext';
-import { fetchShopifyProducts, type ShopifyProduct } from '@/lib/shopify';
+
+import { products, type Product } from "@/data/products";
 
 const categories = [
   { slug: 'all', name: 'All Jewelry' },
-  { slug: 'rings', name: 'Rings' },
+  // { slug: 'rings', name: 'Rings' },
   { slug: 'necklaces', name: 'Necklaces' },
   { slug: 'earrings', name: 'Earrings' },
   { slug: 'bracelets', name: 'Bracelets' },
   { slug: 'bangles', name: 'Bangles' },
   { slug: 'chains', name: 'Chains' },
-  { slug: 'nosepins', name: 'Nose Pins' },
+  // { slug: 'nosepins', name: 'Nose Pins' },
+  { slug: 'tops', name: 'Tops' },
   { slug: 'pendants', name: 'Pendants' },
 ];
 
@@ -31,25 +33,16 @@ const Shop = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [viewMode, setViewMode] = useState<'grid' | 'large'>('grid');
   const [sortBy, setSortBy] = useState('featured');
-  const [shopifyProducts, setShopifyProducts] = useState<ShopifyProduct[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading] = useState(false);
   const { addItem } = useCart();
   const { addItem: addToWishlist, isInWishlist, removeItem: removeFromWishlist } = useWishlist();
 
   const selectedCategory = searchParams.get('category') || 'all';
 
-  useEffect(() => {
-    setLoading(true);
-    fetchShopifyProducts(50).then((prods) => {
-      setShopifyProducts(prods);
-      setLoading(false);
-    });
-  }, []);
-
   // Category keyword mapping for broader matching
   const categoryKeywords: Record<string, string[]> = {
     rings: ['ring', 'band', 'solitaire', 'engagement'],
-    earrings: ['earring', 'stud', 'jhumka', 'hoop', 'huggie', 'drop', 'dangler', 'ear cuff', 'chandbali'],
+    earrings: ['earring', 'stud', 'jhumka', 'hoop', 'huggie', 'drop', 'dangler', 'ear cuff', 'chandbali', 'tops'],
     bangles: ['bangle', 'bracelet', 'kada', 'charm'],
     bracelets: ['bracelet', 'bangle', 'chain bracelet', 'charm'],
     necklaces: ['necklace', 'pendant', 'mangalsutra', 'choker', 'chain necklace'],
@@ -59,25 +52,26 @@ const Shop = () => {
   };
 
   // Filter products by category with broad matching; show all if no matches
-  const categoryMatched = selectedCategory === 'all'
-    ? shopifyProducts
-    : shopifyProducts.filter((p) => {
-        const title = p.node.title.toLowerCase();
-        const desc = p.node.description.toLowerCase();
-        const keywords = categoryKeywords[selectedCategory.toLowerCase()] || [selectedCategory.toLowerCase()];
-        return keywords.some((kw) => title.includes(kw) || desc.includes(kw));
-      });
+  const categoryMatched =
+    selectedCategory === 'all'
+      ? products
+      : products.filter((p) => {
+          const title = p.title.toLowerCase();
+          const desc = (p.description ?? '').toLowerCase();
+          const cat = (p.category ?? '').toLowerCase();
+          const keywords = categoryKeywords[selectedCategory.toLowerCase()] || [selectedCategory.toLowerCase()];
+          return keywords.some((kw) => title.includes(kw) || desc.includes(kw) || cat.includes(kw));
+        });
 
   // Fallback: if no matches found for a category, show all products
-  const filteredProducts = categoryMatched.length > 0 ? categoryMatched : shopifyProducts;
+  const filteredProducts = categoryMatched.length > 0 ? categoryMatched : products;
 
-  // Sort
+  // Sort — uses product.price directly (safe, no priceRange dependency)
   const sortedProducts = [...filteredProducts].sort((a, b) => {
-    const priceA = parseFloat(a.node.priceRange.minVariantPrice.amount);
-    const priceB = parseFloat(b.node.priceRange.minVariantPrice.amount);
-    if (sortBy === 'price-low') return priceA - priceB;
-    if (sortBy === 'price-high') return priceB - priceA;
-    return 0;
+    if (sortBy === 'price-low') return a.price - b.price;
+    if (sortBy === 'price-high') return b.price - a.price;
+    if (sortBy === 'newest') return parseInt(b.id) - parseInt(a.id);
+    return 0; // featured: keep original order
   });
 
   const handleCategoryChange = (category: string) => {
@@ -89,27 +83,25 @@ const Shop = () => {
     setSearchParams(searchParams);
   };
 
-  const handleAddToCart = (product: ShopifyProduct) => {
-    const variant = product.node.variants.edges[0]?.node;
-    if (!variant) return;
+  const handleAddToCart = (product: Product) => {
     addItem({
-      id: variant.id,
-      name: product.node.title,
-      price: parseFloat(variant.price.amount),
-      image: product.node.images.edges[0]?.node?.url || '',
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: product.image,
     });
   };
 
-  const handleToggleWishlist = (product: ShopifyProduct) => {
-    const id = product.node.id;
+  const handleToggleWishlist = (product: Product) => {
+    const id = product.id;
     if (isInWishlist(id)) {
       removeFromWishlist(id);
     } else {
       addToWishlist({
         id,
-        name: product.node.title,
-        price: parseFloat(product.node.priceRange.minVariantPrice.amount),
-        image: product.node.images.edges[0]?.node?.url || '',
+        name: product.title,
+        price: product.price,
+        image: product.image,
         category: selectedCategory,
       });
     }
@@ -121,7 +113,6 @@ const Shop = () => {
       <section className="pt-32 pb-12 bg-gradient-hero">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
-            // initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center"
@@ -211,70 +202,77 @@ const Shop = () => {
           ) : sortedProducts.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-lg text-muted-foreground">No products found</p>
-              <p className="text-sm text-muted-foreground mt-2">Try a different category or check back later.</p>
+              <p className="text-sm text-muted-foreground mt-2">
+                Try a different category or check back later.
+              </p>
             </div>
           ) : (
-            <div className={`grid gap-6 ${
-              viewMode === 'grid'
-                ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
-                : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-            }`}>
+            <div
+              className={`grid gap-6 ${
+                viewMode === 'grid'
+                  ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
+                  : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+              }`}
+            >
               {sortedProducts.map((product, index) => {
-                const img = product.node.images.edges[0]?.node?.url;
-                const price = parseFloat(product.node.priceRange.minVariantPrice.amount);
-                const id = product.node.id.split('/').pop();
+                const img = product.image;
+                const price = product.price;
+                const id = product.id;
                 return (
                   <motion.div
-                    key={product.node.id}
-                    // initial={{ opacity: 0, y: 20 }}
-                    // animate={{ opacity: 1, y: 0 }}
-                    // transition={{ duration: 0.4, delay: index * 0.05 }}
+                    key={product.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
                     className="group"
                   >
                     <div className="relative bg-card rounded-lg overflow-hidden shadow-card hover-lift">
+                      {/* ✅ Link uses product.id for detail page routing */}
                       <Link to={`/product/${id}`} className="block relative aspect-square overflow-hidden">
                         {img ? (
                           <img
                             src={img}
-                            alt={product.node.title}
-                            className="w-full h-full object-cover  group-hover:scale-105"
+                            alt={product.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           />
                         ) : (
                           <div className="w-full h-full bg-secondary flex items-center justify-center">
                             <span className="text-muted-foreground text-sm">No image</span>
                           </div>
                         )}
-                        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100">
+                        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                           <button
                             onClick={(e) => {
                               e.preventDefault();
                               handleToggleWishlist(product);
                             }}
                             className={`w-9 h-9 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors ${
-                              isInWishlist(product.node.id)
+                              isInWishlist(product.id)
                                 ? 'text-destructive'
                                 : 'text-foreground hover:text-accent'
                             }`}
                           >
-                            <Heart className={`w-4 h-4 ${isInWishlist(product.node.id) ? 'fill-current' : ''}`} />
+                            <Heart
+                              className={`w-4 h-4 ${isInWishlist(product.id) ? 'fill-current' : ''}`}
+                            />
                           </button>
-                         <div className="w-9 h-9 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:text-accent">
-  <Eye className="w-4 h-4" />
-</div>
+                          <Link
+                            to={`/product/${id}`}
+                            onClick={(e) => e.stopPropagation()}
+                            className="w-9 h-9 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:text-accent"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </Link>
                         </div>
                       </Link>
 
                       <div className="p-4">
                         <h2 className="font-medium text-lg mb-2 line-clamp-2 text-foreground">
-    {product.node.title}
-  </h2>
-                       {/* <div className="w-9 h-9 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:text-accent">
-  
-                      </div> */}
-                      
+                          {product.title}
+                        </h2>
+
                         <div className="flex items-center gap-2 mb-4">
                           <span className="text-accent font-semibold text-lg">
-
                             ₹{price.toLocaleString('en-IN')}
                           </span>
                         </div>

@@ -5,33 +5,13 @@ import { Heart, ShoppingBag, Minus, Plus, Truck, Shield, RefreshCw, ChevronRight
 import { Layout } from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
-import necklacesImage from '@/assets/category-necklaces.jpg';
+
 
 
 import { useEffect} from 'react';
-import { fetchShopifyProducts, type ShopifyProduct } from '@/lib/shopify';
 
+import { products, type Product } from "@/data/products";
 
-
-// Mock product data - will be replaced with Shopify data
-// const productData = {
-//   id: '1',
-//   name: 'Royal Heritage Necklace',
-//   price: 45999,
-//   originalPrice: 52999,
-//   description: 'This exquisite 9K gold necklace is a masterpiece of traditional craftsmanship, featuring intricate filigree work and delicate detailing. Each piece is handcrafted by skilled artisans, ensuring that no two pieces are exactly alike.',
-//   images: [necklacesImage, necklacesImage, necklacesImage],
-//   category: 'Necklaces',
-//   material: '9K Gold',
-//   weight: '12.5 grams',
-//   inStock: true,
-//   features: [
-//     'BIS Hallmarked 9K Gold',
-//     'Handcrafted by skilled artisans',
-//     'Comes with certificate of authenticity',
-//     'Elegant gift packaging included',
-//   ],
-// };
 
 
 const formatPrice = (price: number) => {
@@ -50,26 +30,21 @@ const ProductDetail = () => {
   
 
   const handleAddToCart = () => {
-  if (!variant) return;
   addItem({
-    id: variant.id,
-    name: product.node.title,
-    price: parseFloat(variant.price.amount),
-    image: product.node.images.edges[0]?.node.url || '',
+    id: product.id,
+    name: product.title,
+    price: product.price,
+    image: product.image,
   });
 };
 
-const [product, setProduct] = useState<ShopifyProduct | null>(null);
+const [product, setProduct] = useState<Product | null>(null);
 
 
 
 useEffect(() => {
-  fetchShopifyProducts(50).then((products) => {
-    const found = products.find((p) =>
-      p.node.id.includes(id || '')
-    );
-    setProduct(found || null);
-  });
+  const found = products.find((p) => p.id === id);
+  setProduct(found || null);
 }, [id]);
 
 // const variant = product.node.variants.edges[0]?.node;
@@ -81,12 +56,10 @@ useEffect(() => {
 if (!product) {
   return <div className="pt-32 text-center">Loading...</div>;
 }
-
-const variant = product.node.variants.edges[0]?.node;
-const price = variant ? parseFloat(variant.price.amount) : 0;
+const price = product.price;
 
 
-const images = product.node.images.edges.map(img => img.node.url);
+const images = [product.image];
   return (
 
     
@@ -103,7 +76,7 @@ const images = product.node.images.edges.map(img => img.node.url);
               Shop
             </Link>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            <span className="text-foreground">{product?.node.title}</span>
+            <span className="text-foreground">{product?.title}</span>
           </nav>
         </div>
       </div>
@@ -149,7 +122,7 @@ const images = product.node.images.edges.map(img => img.node.url);
                
               </span>
               <h1 className="font-display text-3xl md:text-4xl text-foreground mt-2 mb-4">
-                {product?.node.title}
+                {product?.title}
               </h1>
 
               {/* Price */}
@@ -162,7 +135,7 @@ const images = product.node.images.edges.map(img => img.node.url);
 
               {/* Description */}
               <p className="text-muted-foreground leading-relaxed mb-6">
-                {product.node.description}
+                {product.description}
               </p>
 
               {/* Specs */}

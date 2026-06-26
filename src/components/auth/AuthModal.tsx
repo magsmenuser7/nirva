@@ -184,110 +184,110 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   };
 
   if (!isLoggedIn) {
-    return (
+    // return (
 
-      <Dialog open={isOpen}>
+    //   <Dialog open={isOpen}>
 
-        <DialogContent
-          className="max-w-4xl p-0 overflow-hidden bg-card"
-          onPointerDownOutside={(e) => e.preventDefault()}
-        >
+    //     <DialogContent
+    //       className="max-w-4xl p-0 overflow-hidden bg-card"
+    //       onPointerDownOutside={(e) => e.preventDefault()}
+    //     >
 
-          <div className="grid md:grid-cols-2 min-h-[500px]">
+    //       <div className="grid md:grid-cols-2 min-h-[500px]">
 
-            {/* LEFT IMAGE SLIDER */}
+    //         {/* LEFT IMAGE SLIDER */}
 
-            <div className="relative bg-black hidden md:block">
+    //         <div className="relative bg-black hidden md:block">
 
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={currentSlide}
-                  src={productImages[currentSlide]}
-                  alt="Featured Product"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="w-full h-full object-cover"
-                />
-              </AnimatePresence>
+    //           <AnimatePresence mode="wait">
+    //             <motion.img
+    //               key={currentSlide}
+    //               src={productImages[currentSlide]}
+    //               alt="Featured Product"
+    //               initial={{ opacity: 0 }}
+    //               animate={{ opacity: 1 }}
+    //               exit={{ opacity: 0 }}
+    //               className="w-full h-full object-cover"
+    //             />
+    //           </AnimatePresence>
 
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4">
+    //           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4">
 
-                <button onClick={prevSlide} className="p-2 bg-card/30 rounded-full">
-                  {/* <ChevronLeft /> */}
-                </button>
+    //             <button onClick={prevSlide} className="p-2 bg-card/30 rounded-full">
+    //               {/* <ChevronLeft /> */}
+    //             </button>
 
-                <button onClick={nextSlide} className="p-2 bg-card/30 rounded-full">
-                  {/* <ChevronRight /> */}
-                </button>
+    //             <button onClick={nextSlide} className="p-2 bg-card/30 rounded-full">
+    //               {/* <ChevronRight /> */}
+    //             </button>
 
-              </div>
+    //           </div>
 
-            </div>
+    //         </div>
 
-            {/* RIGHT FORM */}
+    //         {/* RIGHT FORM */}
 
-            <div className="p-8 flex flex-col justify-center">
+    //         <div className="p-8 flex flex-col justify-center">
 
-              <h2 className="text-2xl mb-2">Welcome to NIRVA</h2>
+    //           <h2 className="text-2xl mb-2">Welcome to NIRVA</h2>
 
-              <p className="text-muted-foreground mb-6">
-                Enter your details to explore our gold collections
-              </p>
+    //           <p className="text-muted-foreground mb-6">
+    //             Enter your details to explore our gold collections
+    //           </p>
 
-              <form onSubmit={handleLogin} className="space-y-4">
+    //           <form onSubmit={handleLogin} className="space-y-4">
 
-                <div>
-                  <Label>Name</Label>
-                  <Input
-                    type="text"
-                    required
-                    placeholder="Enter your name"
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                  />
-                </div>
+    //             <div>
+    //               <Label>Name</Label>
+    //               <Input
+    //                 type="text"
+    //                 required
+    //                 placeholder="Enter your name"
+    //                 onChange={(e) =>
+    //                   setFormData({ ...formData, name: e.target.value })
+    //                 }
+    //               />
+    //             </div>
 
-                <div>
-                  <Label>Email</Label>
-                  <Input
-                    type="email"
-                    required
-                    placeholder="Enter your email"
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                  />
-                </div>
+    //             <div>
+    //               <Label>Email</Label>
+    //               <Input
+    //                 type="email"
+    //                 required
+    //                 placeholder="Enter your email"
+    //                 onChange={(e) =>
+    //                   setFormData({ ...formData, email: e.target.value })
+    //                 }
+    //               />
+    //             </div>
 
-                <div>
-                  <Label>Phone Number</Label>
-                  <Input
-                    type="tel"
-                    required
-                    placeholder="Enter your phone number"
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
-                  />
-                </div>
+    //             <div>
+    //               <Label>Phone Number</Label>
+    //               <Input
+    //                 type="tel"
+    //                 required
+    //                 placeholder="Enter your phone number"
+    //                 onChange={(e) =>
+    //                   setFormData({ ...formData, phone: e.target.value })
+    //                 }
+    //               />
+    //             </div>
 
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Submitting..." : "Submit"}
-                </Button>
+    //             <Button type="submit" className="w-full" disabled={isLoading}>
+    //               {isLoading ? "Submitting..." : "Submit"}
+    //             </Button>
 
-              </form>
+    //           </form>
 
-            </div>
+    //         </div>
 
-          </div>
+    //       </div>
 
-        </DialogContent>
+    //     </DialogContent>
 
-      </Dialog>
+    //   </Dialog>
 
-    );
+    // );
   }
 
   return null;

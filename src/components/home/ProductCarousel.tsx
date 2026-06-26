@@ -4,7 +4,83 @@ import { Heart, Eye, ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-reac
 import { Link } from 'react-router-dom';
 import { useCart } from '@/contexts/CartContext';
 import { useWishlist } from '@/contexts/WishlistContext';
-import { fetchShopifyProducts, type ShopifyProduct } from '@/lib/shopify';
+// import { fetchShopifyProducts, type ShopifyProduct } from '@/lib/shopify';
+
+import womensjewellerytopsone from "../../assets/products/tops/womens-jewellery-tops-1.jpeg";
+import womensjewellerytopstwo from "../../assets/products/tops/womens-jewellery-tops-2.jpeg";
+import womensjewellerytopsthree from "../../assets/products/tops/womens-jewellery-tops-3.jpeg";
+import womensjewellerytopsfour from "../../assets/products/tops/womens-jewellery-tops-4.jpeg";
+import womensjewellerytopsfive from "../../assets/products/tops/womens-jewellery-tops-5.jpeg";
+import womensjewellerytopssix from "../../assets/products/tops/womens-jewellery-tops-6.jpeg";
+import womensjewellerytopsseven from "../../assets/products/tops/womens-jewellery-tops-7.jpeg";
+
+export interface Product {
+  id: string;
+  title: string;
+  price: number;
+  image: string;
+  category: string;
+  description: string;
+}
+
+export const products: Product[] = [
+ {
+    id: "1",
+    title: "Nirva Emerald dewdrops",
+    price: 27786.5,
+    image: womensjewellerytopsone,
+    category: "tops",
+    description: "elegant emerald teardrops framed by brilliant sparkle.",
+  },
+  {
+    id: "2",
+    title: "Nirva Ruby Dewdrops",
+    price: 25347,
+    image: womensjewellerytopstwo,
+    category: "tops",
+    description: "Elegant ruby teardrops with radiant sparkle.",
+  },
+  {
+    id: "3",
+    title: "Nirva Emerald Bloom Studs",
+    price: 17731,
+    image: womensjewellerytopsthree,
+    category: "tops",
+    description: "Graceful emerald sparkle in a timeless stud design.",
+  },
+  {
+    id: "4",
+    title: "Nirva Ruby Tree Studs",
+    price: 16422,
+    image: womensjewellerytopsfour,
+    category: "tops",
+    description: "Delicate floral-inspired studs with radiant ruby stones and brilliant sparkle.",
+  },
+  {
+    id: "5",
+    title: "Nirva Halo Circle Earrings",
+    price: 10019.8,
+    image: womensjewellerytopsfive,
+    category: "tops",
+    description: "Elegant circular earrings with a sparkling halo design and brilliant stone accents for everyday sophistication.",
+  },
+  {
+    id: "6",
+    title: "Nirva Regal Cone Drops",
+    price: 31832.5,
+    image: womensjewellerytopssix,
+    category: "tops",
+    description: "Bold cone-shaped earrings with layered sparkle detailing, crafted to make every occasion shine.",
+  },
+  {
+    id: "7",
+    title: "Nirva Emerald Star Studs",
+    price: 15470,
+    image: womensjewellerytopsseven,
+    category: "tops",
+    description: "Elegant circular studs featuring a radiant emerald center surrounded by sparkling stones for a timeless look.",
+  },
+];
 
 const formatPrice = (price: number) =>
   new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(price);
@@ -12,21 +88,22 @@ const formatPrice = (price: number) =>
 export const ProductCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [products, setProducts] = useState<ShopifyProduct[]>([]);
-  const [loading, setLoading] = useState(true);
+  // const [products, setProducts] = useState<ShopifyProduct[]>([]);
+  const carouselProducts = products;
+  const [loading] = useState(false);
   const { addItem } = useCart();
   const { addItem: addToWishlist, isInWishlist, removeItem: removeFromWishlist } = useWishlist();
   const intervalRef = useRef<ReturnType<typeof setInterval>>();
 
   // Fetch Shopify products on mount, limit to 6 for carousel
-  useEffect(() => {
-    fetchShopifyProducts(6).then((prods) => {
-      setProducts(prods);
-      setLoading(false);
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetchShopifyProducts(6).then((prods) => {
+  //     setProducts(prods);
+  //     setLoading(false);
+  //   });
+  // }, []);
 
-  const totalSlides = products.length;
+  const totalSlides = carouselProducts.length;
 
   const startAutoPlay = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
@@ -48,39 +125,47 @@ export const ProductCarousel = () => {
     startAutoPlay();
   };
 
-  const handleAddToCart = (product: ShopifyProduct) => {
-    const variant = product.node.variants.edges[0]?.node;
-    if (!variant) return;
+  const handleAddToCart = (product: Product) => {
     addItem({
-      id: variant.id,
-      name: product.node.title,
-      price: parseFloat(variant.price.amount),
-      image: product.node.images.edges[0]?.node.url || '',
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: product.image,
     });
   };
 
-  const handleToggleWishlist = (product: ShopifyProduct) => {
-    const id = product.node.id;
+  const handleToggleWishlist = (product: Product) => {
+    const id = product.id;
     if (isInWishlist(id)) {
       removeFromWishlist(id);
     } else {
       addToWishlist({
         id,
-        name: product.node.title,
-        price: parseFloat(product.node.priceRange.minVariantPrice.amount),
-        image: product.node.images.edges[0]?.node.url || '',
-        category: '',
+        name: product.title,
+        price: product.price,
+        image: product.image,
+        category: product.category,
       });
     }
   };
 
+
   const getVisibleItems = () => {
     if (totalSlides === 0) return [];
+
     const items = [];
+
     for (let offset = -2; offset <= 2; offset++) {
-      const index = ((activeIndex + offset) % totalSlides + totalSlides) % totalSlides;
-      items.push({ product: products[index], offset, originalIndex: index });
+      const index =
+        ((activeIndex + offset) % totalSlides + totalSlides) % totalSlides;
+
+      items.push({
+        product: carouselProducts[index],
+        offset,
+        originalIndex: index,
+      });
     }
+
     return items;
   };
 
@@ -121,15 +206,14 @@ export const ProductCarousel = () => {
 
             {/* Dots */}
             <div className="flex gap-2 mb-8">
-              {products.map((_, i) => (
+              {carouselProducts.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => goTo(i)}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
-                    i === activeIndex
+                  className={`h-2.5 rounded-full transition-all duration-300 ${i === activeIndex
                       ? 'bg-accent w-8'
                       : 'bg-primary-foreground/30 w-2.5 hover:bg-primary-foreground/50'
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -162,9 +246,9 @@ export const ProductCarousel = () => {
               {visibleItems.map(({ product, offset, originalIndex }) => {
                 const isCenter = offset === 0;
                 const isAdjacent = Math.abs(offset) === 1;
-                const img = product.node.images.edges[0]?.node.url;
-                const price = parseFloat(product.node.priceRange.minVariantPrice.amount);
-                const id = product.node.id.split('/').pop();
+                const img = product.image;
+                const price = product.price;
+                const id = product.id;
 
                 const xPercent = offset * 105;
                 const scale = isCenter ? 1 : isAdjacent ? 0.85 : 0.7;
@@ -184,8 +268,8 @@ export const ProductCarousel = () => {
                       <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
                         {img ? (
                           <img
-                            src={img}
-                            alt={product.node.title}
+                            src={product.image}
+                            alt={product.title}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                           />
                         ) : (
@@ -200,14 +284,13 @@ export const ProductCarousel = () => {
                             <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                               <button
                                 onClick={(e) => { e.stopPropagation(); handleToggleWishlist(product); }}
-                                className={`w-9 h-9 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors ${
-                                  isInWishlist(product.node.id) ? 'text-destructive' : 'text-foreground hover:text-accent'
-                                }`}
+                                className={`w-9 h-9 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors ${isInWishlist(product.id) ? 'text-destructive' : 'text-foreground hover:text-accent'
+                                  }`}
                               >
-                                <Heart className={`w-4 h-4 ${isInWishlist(product.node.id) ? 'fill-current' : ''}`} />
+                                <Heart className={`w-4 h-4 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
                               </button>
                               <Link
-                                to={`/product/${id}`}
+                                to={`/product/${product.id}`}
                                 onClick={(e) => e.stopPropagation()}
                                 className="w-9 h-9 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:text-accent transition-colors"
                               >
@@ -227,8 +310,8 @@ export const ProductCarousel = () => {
 
                             {/* Title + Price overlay at bottom */}
                             <div className="absolute bottom-14 left-0 right-0 px-4 py-3 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <p className="text-white font-medium text-sm line-clamp-1">{product.node.title}</p>
-                              <p className="text-accent text-sm font-semibold">{formatPrice(price)}</p>
+                              <p className="text-white font-medium text-sm line-clamp-1">{product.title}</p>
+                              <p className="text-accent text-sm font-semibold">{formatPrice(product.price)}</p>
                             </div>
                           </>
                         )}

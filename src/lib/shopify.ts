@@ -1,10 +1,14 @@
 // Shopify Storefront API Configuration
-const SHOPIFY_API_VERSION = '2025-07';
-const SHOPIFY_STORE_PERMANENT_DOMAIN = 'nqppcg-92.myshopify.com';
-const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
-const SHOPIFY_STOREFRONT_TOKEN = '80316d89acd35bfba143f19efc19100d';
+// const SHOPIFY_API_VERSION = '2025-07';
+// const SHOPIFY_STORE_PERMANENT_DOMAIN = 'nqppcg-92.myshopify.com';
+// const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
+// const SHOPIFY_STOREFRONT_TOKEN = '80316d89acd35bfba143f19efc19100d';
 
 export interface ShopifyProduct {
+  image: any;
+  price: any;
+  id: any;
+  title: string;
   node: {
     id: string;
     title: string;
