@@ -5,6 +5,8 @@ import womensjewellerytopsfour from "../assets/products/tops/womens-jewellery-to
 import womensjewellerytopsfive from "../assets/products/tops/womens-jewellery-tops-5.jpeg";
 import womensjewellerytopssix from "../assets/products/tops/womens-jewellery-tops-6.jpeg";
 import womensjewellerytopsseven from "../assets/products/tops/womens-jewellery-tops-7.jpeg";
+import womensjewellerytopseight from "../assets/products/tops/womens-jewellery-tops-8.jpeg";
+import womensjewellerytopsnine from "../assets/products/tops/womens-jewellery-tops-9.jpeg";
 
 
 // bangles
@@ -17,7 +19,6 @@ import womensbanglessix from "../assets/products/bangles/Bnagle3-2.jpeg";
 
 
 // Earrings
-import womensearringsone from "../assets/products/earrings/earrings1-1.jpeg";
 import womensearringstwo from "../assets/products/earrings/earrings1-2.jpeg";
 import womensearringsthree from "../assets/products/earrings/earrings2-1.jpeg";
 import womensearringsfour from "../assets/products/earrings/earrings2-2.jpeg";
@@ -70,7 +71,7 @@ export const products: Product[] = [
  {
      id: "1",
      title: "Nirva Emerald dewdrops",
-     price: 27786.5,
+     price: 45747,
      image: womensjewellerytopsone,
      category: "tops",
      description: "elegant emerald teardrops framed by brilliant sparkle.",
@@ -80,7 +81,7 @@ export const products: Product[] = [
   {
       id: "2",
       title: "Nirva Ruby Dewdrops",
-      price: 25347,
+      price: 49402,
       image: womensjewellerytopstwo,
       category: "tops",
       description: "Elegant ruby teardrops with radiant sparkle.",
@@ -90,7 +91,7 @@ export const products: Product[] = [
   {
       id: "3",
       title: "Nirva Emerald Bloom Studs",
-      price: 17731,
+      price: 31452,
       image: womensjewellerytopsthree,
       category: "tops",
       description: "Graceful emerald sparkle in a timeless stud design.",
@@ -100,7 +101,7 @@ export const products: Product[] = [
   {
       id: "4",
       title: "Nirva Ruby Tree Studs",
-      price: 16422,
+      price: 29796,
       image: womensjewellerytopsfour,
       category: "tops",
       description: "Delicate floral-inspired studs with radiant ruby stones and brilliant sparkle.",
@@ -110,7 +111,7 @@ export const products: Product[] = [
   {
       id: "5",
       title: "Nirva Halo Circle Earrings",
-      price: 10019.8,
+      price: 16730,
       image: womensjewellerytopsfive,
       category: "tops",
       description: "Elegant circular earrings with a sparkling halo design and brilliant stone accents for everyday sophistication.",
@@ -120,7 +121,7 @@ export const products: Product[] = [
   {
       id: "6",
       title: "Nirva Regal Cone Drops",
-      price: 31832.5,
+      price: 51543,
       image: womensjewellerytopssix,
       category: "tops",
       description: "Bold cone-shaped earrings with layered sparkle detailing, crafted to make every occasion shine.",
@@ -130,17 +131,18 @@ export const products: Product[] = [
   {
       id: "7",
       title: "Nirva Emerald Star Studs",
-      price: 15470,
+      price: 26672,
       image: womensjewellerytopsseven,
       category: "tops",
       description: "Elegant circular studs featuring a radiant emerald center surrounded by sparkling stones for a timeless look.",
       priceRange: undefined,
       variants: undefined
   },
+  
   {
       id: "8",
       title: "Womens Bangles",
-      price: 15470,
+      price: 0,
       image: womensbanglesone,
       category: "bangles",
       description: "",
@@ -150,7 +152,7 @@ export const products: Product[] = [
    {
       id: "9",
       title: "Womens Bangles",
-      price: 15470,
+      price: 0,
       image: womensbanglestwo,
       category: "bangles",
       description: "",
@@ -160,7 +162,7 @@ export const products: Product[] = [
   {
       id: "10",
       title: "Womens Bangles",
-      price: 15470,
+      price: 0,
       image: womensbanglesthree,
       category: "bangles",
       description: "",
@@ -170,7 +172,7 @@ export const products: Product[] = [
   {
       id: "11",
       title: "Womens Bangles",
-      price: 15470,
+      price: 0,
       image: womensbanglesfour,
       category: "bangles",
       description: "",
@@ -180,7 +182,7 @@ export const products: Product[] = [
   {
       id: "11",
       title: "Womens Bangles",
-      price: 15470,
+      price: 0,
       image: womensbanglesfive,
       category: "bangles",
       description: "",
@@ -190,7 +192,7 @@ export const products: Product[] = [
   {
       id: "12",
       title: "Womens Bangles",
-      price: 15470,
+      price: 0,
       image: womensbanglessix,
       category: "bangles",
       description: "",
@@ -200,8 +202,8 @@ export const products: Product[] = [
   {
       id: "13",
       title: "Womens Earrings",
-      price: 15470,
-      image: womensearringsone,
+      price: 0,
+      image: womensearringstwo,
       category: "earrings",
       description: "",
       priceRange: undefined,
@@ -210,7 +212,7 @@ export const products: Product[] = [
   {
       id: "14",
       title: "Womens Earrings",
-      price: 15470,
+      price: 0,
       image: womensearringstwo,
       category: "earrings",
       description: "",
@@ -220,7 +222,7 @@ export const products: Product[] = [
   {
       id: "15",
       title: "Womens Earrings",
-      price: 15470,
+      price: 0,
       image: womensearringsthree,
       category: "earrings",
       description: "",
@@ -231,7 +233,7 @@ export const products: Product[] = [
   {
       id: "16",
       title: "Womens Earrings",
-      price: 15470,
+      price: 0,
       image: womensearringsfour,
       category: "earrings",
       description: "",
@@ -242,7 +244,7 @@ export const products: Product[] = [
   {
       id: "17",
       title: "Womens Earrings",
-      price: 15470,
+      price: 0,
       image: womensearringsfive,
       category: "earrings",
       description: "",
@@ -252,7 +254,7 @@ export const products: Product[] = [
    {
       id: "18",
       title: "Womens Earrings",
-      price: 15470,
+      price: 0,
       image: womensearringssix,
       category: "earrings",
       description: "",
@@ -263,7 +265,7 @@ export const products: Product[] = [
   {
       id: "19",
       title: "Womens Necklaces",
-      price: 15470,
+      price: 0,
       image: womennecklaceone,
       category: "necklaces",
       description: "",
@@ -273,7 +275,7 @@ export const products: Product[] = [
    {
       id: "20",
       title: "Womens Necklaces",
-      price: 15470,
+      price: 0,
       image: womennecklacetwo,
       category: "necklaces",
       description: "",
@@ -283,7 +285,7 @@ export const products: Product[] = [
   {
       id: "21",
       title: "Womens Necklaces",
-      price: 15470,
+      price: 0,
       image: womennecklacethree,
       category: "necklaces",
       description: "",
@@ -293,7 +295,7 @@ export const products: Product[] = [
   {
       id: "21",
       title: "Womens Necklaces",
-      price: 15470,
+      price: 0,
       image: womennecklacefour,
       category: "necklaces",
       description: "",
@@ -303,7 +305,7 @@ export const products: Product[] = [
   {
       id: "21",
       title: "Womens Necklaces",
-      price: 15470,
+      price: 0,
       image: womennecklacefive,
       category: "necklaces",
       description: "",
@@ -313,7 +315,7 @@ export const products: Product[] = [
   {
       id: "22",
       title: "Womens Necklaces",
-      price: 15470,
+      price: 0,
       image: womennecklacesix,
       category: "necklaces",
       description: "",
@@ -323,7 +325,7 @@ export const products: Product[] = [
    {
       id: "23",
       title: "Womens Necklaces",
-      price: 15470,
+      price: 0,
       image: womennecklaceseven,
       category: "necklaces",
       description: "",
@@ -333,7 +335,7 @@ export const products: Product[] = [
   {
       id: "24",
       title: "Bracelets",
-      price: 15470,
+      price: 0,
       image: womenbraceletsone,
       category: "bracelets",
       description: "",
@@ -343,7 +345,7 @@ export const products: Product[] = [
   {
       id: "25",
       title: "Bracelets",
-      price: 15470,
+      price: 0,
       image: womenbraceletstwo,
       category: "bracelets",
       description: "",
@@ -354,7 +356,7 @@ export const products: Product[] = [
   {
       id: "26",
       title: "Chains",
-      price: 15470,
+      price: 0,
       image: womenchainsone,
       category: "chains",
       description: "",
@@ -365,7 +367,7 @@ export const products: Product[] = [
   {
       id: "27",
       title: "Chains",
-      price: 15470,
+      price: 0,
       image: womenchainstwo,
       category: "chains",
       description: "",
@@ -376,7 +378,7 @@ export const products: Product[] = [
   {
       id: "28",
       title: "Chains",
-      price: 15470,
+      price: 0,
       image: womenchainsthree,
       category: "chains",
       description: "",
@@ -387,7 +389,7 @@ export const products: Product[] = [
   {
       id: "29",
       title: "Pendants",
-      price: 15470,
+      price: 0,
       image: womenpendantsone,
       category: "pendants",
       description: "",
@@ -398,7 +400,7 @@ export const products: Product[] = [
   {
       id: "30",
       title: "Pendants",
-      price: 15470,
+      price: 0,
       image: womenpendantstwo,
       category: "pendants",
       description: "",
@@ -409,7 +411,7 @@ export const products: Product[] = [
     {
       id: "31",
       title: "Waist Belt",
-      price: 15470,
+      price: 0,
       image: womenwaistbeltone,
       category: "waistbelt",
       description: "",
@@ -420,10 +422,31 @@ export const products: Product[] = [
    {
       id: "32",
       title: "Waist Belt",
-      price: 15470,
+      price: 0,
       image: womenwaistbelttwo,
       category: "waistbelt",
       description: "",
+      priceRange: undefined,
+      variants: undefined
+  },
+
+  {
+      id: "33",
+      title: "Nirva Emerald Snowdrop Earrings",
+      price: 39536,
+      image: womensjewellerytopseight,
+      category: "tops",
+      description: "Sparkling floral earrings with rich emerald teardrops, crafted to add elegance and charm to every occasion.",
+      priceRange: undefined,
+      variants: undefined
+  },
+  {
+      id: "34",
+      title: "Nirva Lakshmi Devi Earrings",
+      price: 39934,
+      image: womensjewellerytopsnine,
+      category: "tops",
+      description: "Sacred Lakshmi Devi-inspired earrings crafted with sparkling details and elegant temple artistry.",
       priceRange: undefined,
       variants: undefined
   },
