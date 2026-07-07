@@ -50,6 +50,7 @@ export const RelatedProducts = () => {
         price: product.totalAmount,
         image: product.productImage,
         category: product.subCategory,
+        slug: ''
       });
       toast({
         title: 'Added to Wishlist',

@@ -59,7 +59,8 @@ export const ProductCarousel = () => {
         name: product.productName, // Updated mapping
         price: product.totalAmount, // Updated mapping
         image: product.productImage, // Updated mapping
-        category: product.subCategory, // Updated mapping
+        category: product.subCategory,
+        slug: ''
       });
     }
   };
