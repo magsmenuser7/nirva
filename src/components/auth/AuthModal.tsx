@@ -4,7 +4,6 @@ import { ChevronLeft, ChevronRight, X, Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import emailjs from "@emailjs/browser";
 
 import product1 from "@/assets/products/bangles/Bangle1-1.jpeg";
@@ -19,45 +18,37 @@ interface AuthModalProps {
   onClose: () => void;
 }
 
-interface UserData {
-  email: string;
-}
-
 export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   const { toast } = useToast();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string>('');
   
-  // States to track persistence
   const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem("nirvaUser"));
   const [hasDismissed, setHasDismissed] = useState(() => !!localStorage.getItem("nirvaDismissed"));
   const [internalOpen, setInternalOpen] = useState(false);
-
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % productImages.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + productImages.length) % productImages.length);
-
-  // Sync open state
+  // Manage Auto-Slider for images
   useEffect(() => {
-    if (!isLoggedIn && !hasDismissed && isOpen) {
-      setInternalOpen(true);
-    }
+    if (!internalOpen) return;
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % productImages.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [internalOpen]);
+
+  // Handle open state
+  useEffect(() => {
+    if (!isLoggedIn && !hasDismissed && isOpen) setInternalOpen(true);
   }, [isOpen, isLoggedIn, hasDismissed]);
 
-  // Timer: Only run if not logged in and not dismissed
+  // Timer: Auto-open every 10s if not logged in or dismissed
   useEffect(() => {
     if (isLoggedIn || hasDismissed) return;
-
-    const intervalId = setInterval(() => {
-      setInternalOpen(true);
-    }, 10000);
-
+    const intervalId = setInterval(() => setInternalOpen(true), 10000);
     return () => clearInterval(intervalId);
   }, [isLoggedIn, hasDismissed]);
 
-  // Close handler: Sets dismissal flag permanently
   const handleClose = () => {
     setInternalOpen(false);
     setHasDismissed(true);
@@ -65,20 +56,27 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
     onClose();
   };
 
-  const finalizeLogin = () => {
-    localStorage.setItem("nirvaUser", JSON.stringify({ name: formData.name, email: formData.email, phone: formData.phone }));
-    setIsLoggedIn(true);
-    handleClose();
-  };
-
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
-    
-    // ... (Keep existing EmailJS logic)
-    finalizeLogin(); 
-    setIsLoading(false);
+
+    try {
+      await emailjs.send(
+        "service_72ku4qo",
+        "template_3ht10ke",
+        { name: formData.name, email: formData.email, phone: formData.phone },
+        "-sILhhMXgcwUxupso"
+      );
+
+      localStorage.setItem("nirvaUser", JSON.stringify(formData));
+      setIsLoggedIn(true);
+      handleClose();
+      toast({ title: "Welcome to NIRVA", description: "Registration successful!" });
+    } catch (err) {
+      toast({ title: "Error", description: "Verification failed.", variant: "destructive" });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isLoggedIn || hasDismissed) return null;
@@ -86,36 +84,23 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   return (
     <AnimatePresence>
       {internalOpen && (
-        <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4 sm:p-6">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={handleClose}
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-          />
+        <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={handleClose} className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", duration: 0.5 }}
-            className="relative w-full max-w-4xl bg-white dark:bg-zinc-950 overflow-hidden rounded-2xl shadow-2xl flex flex-col md:flex-row min-h-[500px] z-10"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="relative w-full max-w-4xl bg-white overflow-hidden rounded-2xl shadow-2xl flex flex-col md:flex-row min-h-[500px]"
           >
-            <button
-              onClick={handleClose}
-              className="absolute right-4 top-4 z-50 p-2 text-foreground/70 hover:bg-black/10 rounded-full transition-all"
-            >
-              <X className="h-5 w-5" />
-            </button>
+            <button onClick={handleClose} className="absolute right-4 top-4 z-50 p-2 text-zinc-500 hover:text-black"><X className="h-5 w-5" /></button>
 
-            {/* LEFT IMAGE SLIDER: Fixed background flash */}
+            {/* Slider with dark background and wait mode to prevent flash */}
             <div className="relative w-full md:w-1/2 bg-zinc-900 hidden md:block">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentSlide}
                   src={productImages[currentSlide]}
-                  alt="NIRVA Collection"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -123,29 +108,19 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </AnimatePresence>
-
-              <div className="absolute bottom-6 left-0 right-0 flex justify-center items-center gap-4 z-10">
-                <button onClick={prevSlide} className="p-2 bg-white/20 hover:bg-white/40 rounded-full text-white"><ChevronLeft className="w-5 h-5" /></button>
-                <button onClick={nextSlide} className="p-2 bg-white/20 hover:bg-white/40 rounded-full text-white"><ChevronRight className="w-5 h-5" /></button>
+              <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-4 z-10">
+                <button onClick={() => setCurrentSlide((p) => (p - 1 + productImages.length) % productImages.length)} className="p-2 bg-white/20 rounded-full text-white"><ChevronLeft /></button>
+                <button onClick={() => setCurrentSlide((p) => (p + 1) % productImages.length)} className="p-2 bg-white/20 rounded-full text-white"><ChevronRight /></button>
               </div>
             </div>
 
-            {/* RIGHT FORM */}
-            <div className="w-full md:w-1/2 p-8 sm:p-10 flex flex-col justify-center bg-white dark:bg-zinc-950">
-              <div className="mb-8">
-                <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground flex items-center gap-2">
-                  <Sparkles className="text-amber-600" /> Welcome to NIRVA
-                </h2>
-                <p className="text-sm text-muted-foreground mt-2">Enter your details to unlock exclusive offers.</p>
-              </div>
-
-              <form onSubmit={handleLogin} className="space-y-5">
+            <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
+              <h2 className="text-3xl font-bold mb-6 flex items-center gap-2"><Sparkles className="text-amber-600" /> Welcome to NIRVA</h2>
+              <form onSubmit={handleLogin} className="space-y-4">
                 <Input required placeholder="Full Name" onChange={(e) => setFormData({...formData, name: e.target.value})} />
                 <Input required type="email" placeholder="Email Address" onChange={(e) => setFormData({...formData, email: e.target.value})} />
                 <Input required type="tel" placeholder="Phone Number" onChange={(e) => setFormData({...formData, phone: e.target.value})} />
-                <Button type="submit" className="w-full h-12 bg-amber-600 hover:bg-amber-700 text-white" disabled={isLoading}>
-                  {isLoading ? "Verifying..." : "Enter NIRVA Collection"}
-                </Button>
+                <Button type="submit" className="w-full bg-amber-600 hover:bg-amber-700" disabled={isLoading}>{isLoading ? "Verifying..." : "Enter NIRVA Collection"}</Button>
               </form>
             </div>
           </motion.div>
