@@ -6,14 +6,14 @@ import banner3 from "@/assets/banners/NIRVA copy.jpg"
 
 export default function Banner3() {
   return (
-    <section className="relative w-full h-[637.5px] bg-black overflow-hidden">
+    <section className="relative w-full h-[700px] bg-black overflow-hidden">
 
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
           src={mode2}
           alt="Luxury Jewellery"
-          className="w-full h-full object-contain "
+          className="w-full h-full object-cover"
         />
 
         {/* Left Dark Gradient Overlay */}
