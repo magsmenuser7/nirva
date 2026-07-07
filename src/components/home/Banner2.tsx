@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import model from "@/assets/banners/horozontal-banner.jpeg"
+import mode2 from "@/assets/banners/multicollections-earrings-2.jpeg"
 
 export default function Banner2() {
   return (
@@ -8,7 +9,7 @@ export default function Banner2() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src={model}
+          src={mode2}
           alt="Jewellery Collection"
           className="w-full h-full object-cover"
         />
@@ -27,9 +28,9 @@ export default function Banner2() {
     className="max-w-4xl text-white"
   >
     {/* Heading */}
-    <h1 className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight tracking-wide whitespace-nowrap">
+    {/* <h1 className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight tracking-wide whitespace-nowrap">
       Adorn Yourself in Grace
-    </h1>
+    </h1> */}
 
     {/* Subtext */}
     <p className="mt-4 text-sm md:text-base text-gray-200">

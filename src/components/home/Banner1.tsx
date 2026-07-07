@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import model from "@/assets/banners/9b58e3d1-a967-4045-a679-565e8e651cdf.jpeg"
+import model2 from "@/assets/banners/multicollections-bangles-4.jpeg"
 
 export default function Banner1() {
   return (
@@ -8,7 +9,7 @@ export default function Banner1() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src={model}
+          src={model2}
           alt="Luxury Jewellery"
           className="w-full h-full object-cover"
         />
@@ -27,21 +28,23 @@ export default function Banner1() {
     className="max-w-xl text-right text-white space-y-4"
   >
     {/* Heading */}
-    <h1 className="text-4xl md:text-6xl font-light leading-tight tracking-wide">
+    {/* <h1 className="text-4xl md:text-6xl font-light leading-tight tracking-wide">
       Less Noise. <br /> More Luxury.
-    </h1>
+    </h1> */}
 
     {/* Subtext */}
-    <p className="text-sm md:text-base text-gray-300">
+    {/* <p className="text-sm md:text-base text-gray-700">
       Pieces that speak softly, yet leave a lasting impression.
-    </p>
+    </p> */}
 
     {/* Button */}
-    <div>
-      
+
       <button className="bg-white text-black px-6 py-3 text-sm tracking-widest hover:bg-gray-200 transition-all duration-300 rounded" onClick={() => window.location.href = '/shop'}>
         SHOP NOW
       </button>
+    <div>
+      
+
      
     </div>
   </motion.div>

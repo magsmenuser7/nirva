@@ -1,6 +1,7 @@
  import { createContext, useContext, useState, ReactNode } from 'react';
  
  export interface WishlistItem {
+   slug: string;
    id: string;
    name: string;
    price: number;

@@ -1,22 +1,23 @@
 import { motion } from "framer-motion";
 import model from "@/assets/banners/9fe57630-84aa-4fb0-bd19-48f27ba1ffcb.jpeg"
+import mode2 from "@/assets/banners/multicollections-necklaces-3.jpeg"
 import banner3 from "@/assets/banners/NIRVA copy.jpg"
-import Shop from "@/pages/Shop";
+// import Shop from "@/pages/Shop";
 
 export default function Banner3() {
   return (
-    <section className="relative w-full h-[700px] bg-black overflow-hidden">
+    <section className="relative w-full h-[637.5px] bg-black overflow-hidden">
 
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src={banner3}
+          src={mode2}
           alt="Luxury Jewellery"
           className="w-full h-full object-contain "
         />
 
         {/* Left Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+       <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
      {/* Content */}
@@ -43,7 +44,7 @@ export default function Banner3() {
     {/* Button */}
    
     <div className="mt-8 mb-[-40px]">
-      <button className="bg-[#676861] text-black px-8 py-3 text-sm tracking-widest rounded-md hover:bg-black hover:text-white transition duration-300" onClick={() => window.location.href = '/shop'}>
+      <button className="bg-white text-black px-8 py-3 text-sm tracking-widest rounded-md hover:bg-gray-200 transition duration-300" onClick={() => window.location.href = '/shop'}>
         SHOP NOW
       </button>
     </div>

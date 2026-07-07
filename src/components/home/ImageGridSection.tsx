@@ -6,7 +6,7 @@ import gridRightTop from "@/assets/grid-image-right-top.jpg";
 import gridRightBottom from "@/assets/grid-image-right-bottom.jpg";
 import leftimage from "@/assets/banners/green-necklace.jpg"
 import rightTopImage from "@/assets/banners/3cc647c1-0c21-4ac3-92de-c984fd958186.jpeg"
-import rightBottomImage from "@/assets/products/necklace/necklace1-1.jpeg"
+import emeraldmajestynecklaceset1 from "@/assets/products/necklace/emerald-majesty-necklace-set-1.jpeg";
 
 export const ImageGridSection = () => {
   return (
@@ -57,7 +57,7 @@ export const ImageGridSection = () => {
         {/* BOTTOM */}
         <div className="relative rounded-2xl overflow-hidden aspect-[15/9] group">
           <img
-            src={rightBottomImage}
+            src={emeraldmajestynecklaceset1}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
 
