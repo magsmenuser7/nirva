@@ -8,6 +8,10 @@ import idols from "@/assets/products/idols/statue2-1.jpeg";
 import tirumalabalajidivinependantset1 from "@/assets/products/pendants/tirumala-balaji-divine-pendant-set-1.jpeg";
 import waistbelt from "@/assets/products/waistbelt/waistbelt1-2.jpeg";
 import bestsellers from "@/assets/products/earrings/earrings3-1.jpeg";
+import emeraldelegancenecklace from "@/assets/products/womens/necklaces/emerald-elegance-necklace.jpeg";
+import nirvarosegoldlinkbracelet from "@/assets/products/mens/nirva-rose-gold-link-bracelet.jpeg";
+import nirvaheartsparkstuds from "@/assets/products/kids/nirva-heart-spark-studs.jpeg";
+import divinecollections from "@/assets/products/divinecollections/nirva-divine-shiva-lingam-pendant.jpeg";
 
 // Importing central products to calculate counts dynamically
 import { products } from "@/data/products";
@@ -21,6 +25,11 @@ const categories = [
   { name: 'Idols', slug: 'idols', image: idols },
   { name: 'Pendants', slug: 'pendants', image: tirumalabalajidivinependantset1 },
   { name: 'Waist Belts', slug: 'waistbelts', image: waistbelt },
+  { name: 'Mens Jewellery', slug: 'mens', image: nirvarosegoldlinkbracelet},
+  { name: 'Womens Jewellery', slug: 'womens', image: emeraldelegancenecklace},
+  { name: 'kids Jewellery', slug: 'kids', image: nirvaheartsparkstuds},
+  { name: 'Divine Collections', slug: 'divine', image: divinecollections},
+
 ];
 
 const containerVariants = {
@@ -45,10 +54,53 @@ const itemVariants = {
 export const CategoriesSection = () => {
   
   // Helper to dynamically count products based on your new subCategory field
-  const getProductCount = (slug: string) => {
-    if (slug === 'bestsellers') return products.filter(p => p.featured).length; // Example logic for bestsellers
-    return products.filter(p => p.subCategory.toLowerCase() === slug.toLowerCase() || p.mainCategory.toLowerCase() === slug.toLowerCase()).length;
-  };
+const normalize = (text: string = "") =>
+  text
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/\s+/g, "");
+
+const getProductCount = (slug: string) => {
+  const selected = normalize(slug);
+
+  return products.filter((product) => {
+    const main = normalize(product.mainCategory);
+    const sub = normalize(product.subCategory);
+    const title = normalize(product.productName);
+
+    // Same logic as Shop.tsx
+    if (selected === "mens") {
+      return main === "mensjewellery";
+    }
+
+    if (selected === "womens") {
+      return main === "womensjewellery";
+    }
+
+    if (selected === "kids") {
+      return main === "kidsjewellery";
+    }
+
+    if (selected === "divine") {
+      return main === "divinecollection";
+    }
+
+    if (selected === "blackbeads") {
+      return (
+        sub.includes("blackbeads") ||
+        sub.includes("black beads") ||
+        title.includes("mangalsutra")
+      );
+    }
+
+    return (
+      sub.includes(selected) ||
+      selected.includes(sub) ||
+      title.includes(selected)
+    );
+  }).length;
+};
+
 
   return (
     <section className="py-20 lg:py-32 bg-background">

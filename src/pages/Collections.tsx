@@ -15,6 +15,12 @@ import bracelet from "@/assets/products/bracelets/bracelet1-1.jpeg";
 import pendatirumalabalajidivinependantset1 from "@/assets/products/pendants/tirumala-balaji-divine-pendant-set-1.jpeg";
 import waistbelt from "@/assets/products/waistbelt/waistbelt1-1.jpeg";
 import emeraldmajestynecklaceset1 from "../assets/products/necklace/emerald-majesty-necklace-set-1.jpeg";
+import nirvacelestemangalsutr from "../assets/products/blackbeadschains/nirva-celeste-mangalsutra.jpeg";
+import divinecollections from "../assets/products/divinecollections/nirva-divine-shiva-lingam-pendant.jpeg";
+import nirvaheartsparkstuds from "../assets/products/kids/nirva-heart-spark-studs.jpeg";
+import nirvarosegoldlinkbracelet from "../assets/products/mens/nirva-rose-gold-link-bracelet.jpeg";
+import emeraldelegancenecklace from "../assets/products/womens/necklaces/emerald-elegance-necklace.jpeg";
+
 
 
 import { products, type Product } from "@/data/products";
@@ -29,6 +35,12 @@ const collections = [
   { id: "chains", name: "Chains", image: chain, description: "Enhance your look with our beautiful chains collection." },
   { id: "pendants", name: "Pendants", image: pendatirumalabalajidivinependantset1, description: "Add a touch of elegance with our stunning pendants collection." },
   { id: "waistbelt", name: "Waist Belt", image: waistbelt, description: "Define your silhouette with our fashionable waist belts collection." },
+  { id: "blackbeads", name: "Black Beads", image: nirvacelestemangalsutr, description: "A perfect blend of tradition and sparkle, the Nirva Celeste Mangalsutra is crafted in 9K gold with a classic black bead chain." },
+  { id: "divinecollections", name: "Divine Collections", image: divinecollections, description: "A sacred Nirva 9K yellow gold Shiva Lingam pendant crafted with a polished finish." },
+  { id: "kidsearrings", name: "Kids Jewellery", image: nirvaheartsparkstuds, description: "Charming 9K gold stud earrings featuring a modern geometric silhouette with a delicate heart motif" },
+  { id: "mensbracelets", name: "Men's Jewellery", image: nirvarosegoldlinkbracelet, description: "A sophisticated Nirva 9K Rose Gold Men’s Bracelet featuring sleek geometric links with a polished finish." },
+  { id: "womensnecklaces", name: "Women's Jewellery", image: emeraldelegancenecklace, description: "A graceful dual-strand necklace adorned with brilliant stones and a captivating pear-shaped emerald centerpiece." },
+
 ];
 
 const formatPrice = (price: number) => {
@@ -70,18 +82,27 @@ const Collections = () => {
         price: product.totalAmount,
         image: product.productImage,
         category: product.subCategory,
+        slug: ""
       });
     }
   };
 
-  // Updated logic to match the new products.ts dataset structure (using subCategory)
+// Updated flexible filter that removes spaces and matches subCategory, mainCategory, or title
   const filteredProducts =
     selectedCollection === "all"
       ? products
-      : products.filter(
-          (product) =>
-            (product.subCategory || "").toLowerCase() === selectedCollection.toLowerCase()
-        );
+      : products.filter((product) => {
+          // 1. Remove all spaces and make lowercase (e.g., "blackbeads" -> "blackbeads")
+          const selected = selectedCollection.toLowerCase().replace(/\s+/g, '');
+          
+          // 2. Clean the product fields to match against
+          const subCat = (product.subCategory || "").toLowerCase().replace(/\s+/g, '');
+          const mainCat = (product.mainCategory || "").toLowerCase().replace(/\s+/g, '');
+          const title = (product.productName || "").toLowerCase().replace(/\s+/g, '');
+
+          // 3. Return true if ANY of the fields contain the category name
+          return subCat.includes(selected) || selected.includes(subCat) || mainCat.includes(selected) || title.includes(selected);
+        });
 
   return (
     <Layout noPadding>

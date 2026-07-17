@@ -120,7 +120,7 @@ export const ProductCarousel = () => {
             </p>
 
             {/* Dots */}
-            <div className="flex gap-2 mb-8">
+            {/* <div className="flex gap-2 mb-8">
               {carouselProducts.map((_, i) => (
                 <button
                   key={i}
@@ -131,7 +131,7 @@ export const ProductCarousel = () => {
                     }`}
                 />
               ))}
-            </div>
+            </div> */}
 
             {/* Nav Arrows */}
             <div className="flex gap-3">
